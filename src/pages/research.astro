@@ -1,0 +1,70 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { profile } from "@/settings";
+import BetterIcon from "@/components/ui/BetterIcon.astro";
+import List from "@/components/ui/List.astro";
+import {RESEARCH_ICONS} from "@/data/researchIcons";
+
+const { research_areas } = profile;
+---
+
+<Layout title="Research | Dr.phil. Victoria Mummelthei">
+  <div class="prose max-w-none">
+    <h1 class="text-3xl font-bold mb-8">how the work begins</h1>
+
+    <div class="mb-12">
+      <p class="text-lg mb-6">
+        Sometimes a game does something that feels slightly out of place: a body that refuses to stay dead, an ocean that behaves like memory rather than landscape, a world that keeps moving quietly beyond the player’s view. Staying with such moments for a while tends to open larger questions about time, environments, and how stories travel between media.
+      </p>
+    </div>
+
+    <h2 class="text-2xl font-bold mb-6">research areas</h2>
+    <div class="grid gap-8 mb-12">
+      {
+        research_areas.map((area) => (
+          <div class="flex gap-6 items-start">
+            <BetterIcon>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2"
+                class="size-6 stroke-accent"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d={RESEARCH_ICONS[area.field as keyof typeof RESEARCH_ICONS]?.path || RESEARCH_ICONS['computer-science'].path}
+                />
+              </svg>
+            </BetterIcon>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">{area.title}</h3>
+              <p class="text-base">{area.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <List listTitle="current projects" listItems={[
+      {
+        title: "Collective Time in Digital Games",
+        description: "Many narrative games tell stories about heroes, but rarely about what comes after them. Children do not grow up. Dynasties do not continue. The project begins with this quiet absence and asks what it might mean for games to imagine futures that belong to more than one life."
+      },
+      {
+        title: "Ecological Indifference — Rain World",
+        description: "In Rain World, creatures continue their lives even when no one is watching. The world moves according to its own rhythms, indifferent to the player’s attention. The project lingers with this design choice and asks what it might suggest about ecological thinking beyond the act of noticing."
+      },
+      {
+        title: "The Body That Won’t Stay Dead — Hades",
+        description: "After a few hundred deaths in Hades, something changes: dying becomes routine. The body collapses and reforms so often that the player stops noticing it. The project follows this strange familiarity and asks what kind of embodiment remains when death becomes ordinary."
+      }
+    ]} />
+
+    <h2 class="text-2xl font-bold mb-6">where it sometimes lead</h2>
+    <p class="text-lg mb-6">
+      These questions rarely stay inside a single format. They turn into essays, talks, video experiments, or the occasional photograph taken inside a game world. The aim is simply to follow the question long enough to see what it reveals.
+    </p>
+  </div>
+</Layout>
