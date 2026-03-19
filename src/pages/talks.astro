@@ -26,6 +26,13 @@ import { highlightAuthor } from "@/lib/utils";
               {talk.abstract && (
                 <p class="text-sm text-base-content/80">{talk.abstract}</p>
               )}
+              {talk.link && (
+                <div class="card-actions justify-end mt-4">
+                  <a href={talk.link} class="btn btn-sm btn-secondary text-secondary-content">
+                    Open Talk
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         ))
