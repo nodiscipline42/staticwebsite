@@ -45,7 +45,7 @@ export const social = {
 	bluesky: '',
 	github: '',
 	gitlab: '',
-	scholar: 'https://nodiscipline.hypotheses.org/',
+	scholar: '',
 	inspire: '',
 	arxiv: 'https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Mummelthei%2C%20Victoria%22&l=list&p=1&s=10&sort=bestmatch',
 	orcid: '',
