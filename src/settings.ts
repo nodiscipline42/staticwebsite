@@ -43,6 +43,7 @@ export const social = {
 	linkedin: '',
 	x: '',
 	bluesky: '',
+  substack: 'https://nodiscipline42.substack.com/',
 	github: '',
 	gitlab: '',
 	scholar: '',
