@@ -231,6 +231,14 @@ export const publications = [
 		link: 'https://www.waxmann.com/buecher/Countryside-s-.-Fotografische-Konstruktionen-des-Laendlichen',
 		abstract: '',
 	},
+	{
+		title: 'The Sea and the Beloved. A Corpus-Linguistic Study of Frequencies, Keywords, and Topics in the Poetry of the Syrian Writer Nizar Qabbani (1923-1998)',
+		authors: 'Victoria Mummelthei',
+		journal: 'dissertation @ refubium Freie Universität Berlin',
+		time: '2021',
+		link: 'http://dx.doi.org/10.17169/refubium-30590',
+		abstract: '',
+	},
 	// {
 	// 	title: 'The Radiation of Uranium Compounds',
 	// 	authors: 'Marie Curie',
