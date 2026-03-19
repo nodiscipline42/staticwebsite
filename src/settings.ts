@@ -41,9 +41,8 @@ export const profile = {
 export const social = {
 	email: 'victoria.mummelthei@fu-berlin.de',
 	linkedin: '',
-	x: '',
+	x: 'https://nodiscipline42.substack.com/',
 	bluesky: '',
-  substack: 'https://nodiscipline42.substack.com/',
 	github: '',
 	gitlab: '',
 	scholar: '',
