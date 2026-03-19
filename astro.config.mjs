@@ -11,6 +11,6 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
     integrations: [react(), tailwind(), sitemap()],
-    site: 'https://nodiscipline42.github.io/staticwebsite',
-  base: '/staticwebsite'
+    site: 'https://www.nodiscipline.de',
+  base: '/'
 });
