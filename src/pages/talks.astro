@@ -1,0 +1,35 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { talks } from "@/data/cv";
+import { highlightAuthor } from "@/lib/utils";
+---
+
+<Layout title="Talks">
+  <div class="prose max-w-none">
+    <h1 class="text-3xl font-bold mb-8">Talks</h1>
+
+    <div class="space-y-8">
+      {
+        talks.map((talk) => (
+          <div class="card bg-base-200">
+            <div class="card-body">
+              <h2 class="card-title text-xl">
+                {talk.title}
+              </h2>
+              <p class="text-base mb-2">
+                <span class="font-medium">Speaker:</span>{" "}
+                <span set:html={highlightAuthor(talk.authors)} />
+              </p>
+              <p class="text-sm mb-3">
+                <span class="italic">{talk.journal}</span> • {talk.time}
+              </p>
+              {talk.abstract && (
+                <p class="text-sm text-base-content/80">{talk.abstract}</p>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

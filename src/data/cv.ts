@@ -240,3 +240,21 @@ export const publications = [
 	// 	abstract: 'Early research leading to the identification of uranium’s radioactive properties.',
 	// },
 ];
+export const talks = [
+	{
+		title: 'Playing Through Water: Solastalgia and Environmental Imagination in Post-Flood Digital Worlds',
+		authors: 'Victoria Mummelthei',
+		journal: 'International Conference on Ecocriticism and Environmental Studies, London / Online',
+		time: '2025',
+		link: '',
+		abstract: 'A talk on post-flood digital worlds, environmental imagination, and the emotional force of playing through water.',
+	},
+	{
+		title: "The Slow Stain of Power – Bodily Corruption as Interactive Choice in Baldur's Gate 3",
+		authors: 'Victoria Mummelthei',
+		journal: 'Otherworldly Entertainment, University of Copenhagen',
+		time: '2025',
+		link: '',
+		abstract: 'A talk on bodily corruption, player choice, and the slow aesthetics of power in Baldur’s Gate 3.',
+	},
+];
