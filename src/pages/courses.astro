@@ -1,0 +1,37 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { courses } from "@/data/cv";
+---
+
+<Layout title="Courses">
+  <div class="prose max-w-none">
+    <h1 class="text-3xl font-bold mb-8">Courses</h1>
+
+    <div class="space-y-8">
+      {
+        courses.map((course) => (
+          <div class="card bg-base-200">
+            <div class="card-body">
+              <h2 class="card-title text-xl">
+                {course.title}
+              </h2>
+              <p class="text-sm mb-3">
+                <span class="italic">{course.journal}</span>
+              </p>
+              {course.abstract && (
+                <p class="text-sm text-base-content/80">{course.abstract}</p>
+              )}
+              {course.link && (
+                <div class="card-actions justify-end mt-4">
+                  <a href={course.link} class="btn btn-sm btn-secondary text-secondary-content">
+                    Open
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
