@@ -212,7 +212,7 @@ export const publications = [
 		authors: 'Jonas Müller-Laackman; Victoria Mummelthei',
 		journal: ' "Could this be a dog?” Interdisziplinäre Perspektiven auf Elden Ring und Shadow of the Erdtree',
 		time: '2026',
-		link: 'www.vwh-verlag-shop.de/epages/61236266.sf/de_DE/?ObjectPath=/Shops/61236266/Products/978-3-86488-217-3',
+		link: 'https://vwh-verlag-shop.de/epages/61236266.sf/de_DE/?ObjectPath=/Shops/61236266/Products/978-3-86488-217-3',
 		abstract: '',
 	},
 		{
