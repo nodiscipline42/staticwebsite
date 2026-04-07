@@ -128,6 +128,14 @@ description: "German and English for writing and teaching; some Arabic and Kurdi
 
 export const publications = [
 	{
+		title: 'The Incidental Shore: Beaches, Edges, and World-Feeling in Open-World Games (forthcoming)',
+		authors: 'Victoria Mummelthei',
+		journal: 'M/C Journal, issue beach, edited by Claire Ramos, Jo Coghlan, Lisa Hackett, and Huw Nolan',
+		time: '2027',
+		link: '',
+		abstract: '',
+	},
+	{
 		title: 'The Body That Will Not Stay Dead: Resurrection, Routine, and Subtle Horror in Hades (forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Sublte Body Horror: An Anthology About Having a Body (North Meridian Press)',
