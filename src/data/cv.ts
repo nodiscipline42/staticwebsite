@@ -128,23 +128,23 @@ description: "German and English for writing and teaching; some Arabic and Kurdi
 
 export const publications = [
 	{
-		title: 'FORTHCOMING The Body That Will Not Stay Dead: Resurrection, Routine, and Subtle Horror in Hades',
+		title: 'The Body That Will Not Stay Dead: Resurrection, Routine, and Subtle Horror in Hades (forthcoming)',
 		authors: 'Victoria Mummelthei',
-		journal: 'Proceedings from the Mythological Game Studies Conference, online, 22–23 Mai, 2025 (DeGruyter)',
+		journal: 'Sublte Body Horror: An Anthology About Having a Body (North Meridian Press)',
 		time: '2027',
 		link: '',
 		abstract: 'After a few hundred deaths in Hades, dying stops feeling strange. Zagreus dissolves and reforms so often that the player gradually stops noticing the body that keeps failing. This essay lingers with that quiet shift and asks what kind of embodiment remains when death becomes routine.',
 	},
 	{
-		title: 'FORTHCOMING Pre-Post-Myth: How Cyberpunk Games Were Never Post-Human At All',
+		title: 'Pre-Post-Myth: How Cyberpunk Games Were Never Post-Human At All (forthcoming)',
 		authors: 'Victoria Mummelthei',
-		journal: 'Sublte Body Horror: An Anthology About Having a Body (North Meridian Press)',
+		journal: 'Proceedings from the Mythological Game Studies Conference, online, 22–23 Mai, 2025 (DeGruyter)',
 		time: '2027',
 		link: '',
 		abstract: 'Cyberpunk worlds promise futures where humanity has moved beyond itself. Yet their artificial gods, digital afterlives, and machine philosophies keep circling back to much older stories about transcendence and meaning. This essay follows that pattern and asks why even our most post-human futures still seem unable to imagine life without myth.',
 	},
 		{
-		title: 'FORTHCOMING Blood and Bile: Perspectives from the humanities, art and gaming culture on Blasphemous',
+		title: 'Blood and Bile: Perspectives from the humanities, art and gaming culture on Blasphemous (forthcoming)',
 		authors: 'edited by Jonas Müller-Laackman & Victoria Mummelthei',
 		journal: 'Open access anthology, Berlin Universities Publishing',
 		time: '2027',
@@ -152,7 +152,7 @@ export const publications = [
 		abstract: '',
 	},
 	{
-		title: 'FORTHCOMING On Stone-Singing and the Fantasy of Gentle Extraction in The Rings of Power',
+		title: 'On Stone-Singing and the Fantasy of Gentle Extraction in The Rings of Power (forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Proceedings from the Tolkien Society Seminar 2025: Arda’s Entangled Bodies and Environments (Luna Press Publishing)',
 		time: '2026',
@@ -160,7 +160,7 @@ export const publications = [
 		abstract: 'In The Rings of Power, dwarves describe mining as “stone-singing”: listening to the mountain so that it yields its ore willingly. The phrase turns extraction into something that sounds almost like care. This essay lingers with that strange promise and asks what it reveals about the stories we tell in order to live with the taking of the earth.',
 	},
 	{
-		title: 'FORTHCOMING Hypersea Horror: Offshore Extractivism, Wet Ontology, and Lovecraftian Echoes in Still Wakes the Deep',
+		title: 'Hypersea Horror: Offshore Extractivism, Wet Ontology, and Lovecraftian Echoes in Still Wakes the Deep (forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Lovecraft: An Evolving Mythos. A Companion (Peter Lang)',
 		time: '2026',
@@ -168,7 +168,7 @@ export const publications = [
 		abstract: 'Still Wakes the Deep places cosmic horror on an offshore oil platform, where rusting infrastructure and ancient forces begin to blur together. The rig becomes a strange threshold: neither land nor sea, neither stable industry nor pure abyss. This essay follows that uneasy setting and asks what happens when Lovecraftian dread collides with the material realities of extractivism and oceanic environments.',
 	},
 	{
-		title: 'FORTHCOMING Flourishing in Decay: The Queer Ecological Hybridity of Miquella’s Haligtree in Elden Ring',
+		title: 'Flourishing in Decay: The Queer Ecological Hybridity of Miquella’s Haligtree in Elden Ring (forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Ecocritical Perspectives on Literature and Other Media (Lexington Books)',
 		time: '2026',
@@ -176,7 +176,7 @@ export const publications = [
 		abstract: 'Miquella’s Haligtree looks, by every measure of the Golden Order, like a failure: incomplete, contaminated, slowly rotting from within. Yet the beings who gather there treat this damaged place as sanctuary rather than ruin. This essay lingers with that paradox and asks what kinds of kinship and flourishing become possible in spaces that survive precisely through decay.',
 	},
 	{
-		title: 'FORTHCOMING Tragbare Sterblichkeit: Techwear, Verfall und Persistenz in Death Stranding',
+		title: 'Tragbare Sterblichkeit: Techwear, Verfall und Persistenz in Death Stranding (forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Kostüm und Kostümierung: von theatralen, sozialen und technologischen Dimensionen des Rollentauschs (edited by Loredana Mingione, Selina Seibel)',
 		time: '2026',
@@ -184,7 +184,7 @@ export const publications = [
 		abstract: 'After a long session of Death Stranding, the body carries a strange residue: shoulders tense, as if the weight on Sam’s back had briefly become my own. The game’s wearable technologies promise enhancement, yet constantly display their own decay—boots wear down, batteries drain, equipment ages in the rain. This essay follows that visibility of breakdown and asks what it means to live with technologies that do not hide our fragility but move with it.',
 	},
 	{
-		title: 'FORTHCOMING Drifting in Deep Time: Oceanic Temporality and the Playable Sublime in Underwater Games',
+		title: 'Drifting in Deep Time: Oceanic Temporality and the Playable Sublime in Underwater Games (forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Advancing an Understanding of Temporality in Play and Games (edited among others by Emma Kostopolus)',
 		time: '2026',
@@ -192,7 +192,7 @@ export const publications = [
 		abstract: 'Underwater games such as Abzû and Subnautica do something unusual: they turn the ocean into a medium of time rather than simply a setting. Drifting through these worlds, duration seems to behave differently—slowing, stretching, or pressing itself into breath and depth. This essay follows a series of fragments to ask what happens when players do not merely observe deep time but briefly inhabit it.',
 	},
 	{
-		title: 'FORTHCOMING Zwischen Körper, Klang und Kraft: Der Thu’um als soma-akustische Resonanz in Skyrim',
+		title: 'Zwischen Körper, Klang und Kraft: Der Thu’um als soma-akustische Resonanz in Skyrim (forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: '„I used to be an adventurer like you …“ Interdisziplinäre Perspektiven auf The Elder Scrolls',
 		time: '2026',
@@ -200,11 +200,11 @@ export const publications = [
 		abstract: '',
 	},
 		{
-		title: 'FORTHCOMING Alles ist Form, nichts ist Essenz – Elden Rings queeres Spiel mit (Un-)Geschlechtlichkeiten,',
+		title: 'Alles ist Form, nichts ist Essenz – Elden Rings queeres Spiel mit (Un-)Geschlechtlichkeiten,',
 		authors: 'Jonas Müller-Laackman; Victoria Mummelthei',
 		journal: ' "Could this be a dog?” Interdisziplinäre Perspektiven auf Elden Ring und Shadow of the Erdtree',
 		time: '2026',
-		link: '',
+		link: 'www.vwh-verlag-shop.de/epages/61236266.sf/de_DE/?ObjectPath=/Shops/61236266/Products/978-3-86488-217-3',
 		abstract: '',
 	},
 		{
