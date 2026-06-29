@@ -55,8 +55,8 @@ export const template = {
 	website_url: 'https://www.nodiscipline.de', // Astro needs to know your site’s deployed URL to generate a sitemap. It must start with http:// or https://
 	menu_left: false,
 	transitions: true,
-	lightTheme: 'aqua', // Select one of the Daisy UI Themes or create your own
-	darkTheme: 'aqua', // Select one of the Daisy UI Themes or create your own
+	lightTheme: 'lofi', // Select one of the Daisy UI Themes or create your own
+	darkTheme: 'nord', // Select one of the Daisy UI Themes or create your own
 	excerptLength: 200,
 	postPerPage: 5,
     base: '' // Repository name starting with /
