@@ -7,6 +7,8 @@ export default {
     plugins: [require("@tailwindcss/typography"), require("daisyui")],
     daisyui: {
         themes: [
+            "light",
+            "dark",
             {
                 oceanlight: {
                     "primary": "#3f83f8",
@@ -55,8 +57,6 @@ export default {
                     "error-content": "#ffffff",
                 },
             },
-            "light",
-            "dark",
             "cupcake",
             "bumblebee",
             "emerald",
