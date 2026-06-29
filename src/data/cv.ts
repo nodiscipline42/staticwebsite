@@ -258,19 +258,19 @@ export const publications = [
 ];
 export const talks = [
 	{
-		title: 'FORTHCOMING The Course I Have Not Yet Taught: Assassin’s Creed Mirage and the Question of Proxy Play in Game-based Learning',
+		title: 'FORTHCOMING When the Western Washes Ashore: Island Space and Western Form in Red Dead Redemption 2',
 		authors: 'Victoria Mummelthei',
-		journal: 'Games at the Literary-Ludic Interface: Theory, Pedagogy, Public Engagement, Sapienza University of Rome',
+		journal: 'II Colloquium on Island Literatures and Cultures, Azores University',
 		time: '2026',
 		link: '',
 		abstract: '',
 	},
 	{
-		title: 'FORTHCOMING Too Old to Survive: Aging Bodies, Horror Games, and the Limits of Designed Fear',
+		title: 'FORTHCOMING Old Enough to Be Scared: Age Representation in High-Exposure Horror Games',
 		authors: 'Victoria Mummelthei',
 		journal: 'Falmouth Horror & Gaming Conference',
 		time: '2026',
-		link: '',
+		link: 'https://doi.org/10.5281/zenodo.21035151',
 		abstract: '',
 	},
 	{
