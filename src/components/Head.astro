@@ -42,30 +42,50 @@ const { title, description, image } = Astro.props
 <meta property='twitter:image' content={new URL(image, Astro.url)} />
 
 <!-- Theme selector scripts -->
-<script is:inline define:vars={{defaultLightTheme: template.lightTheme, defaultDarkTheme: template.darkTheme}}>
-  // Get stored theme or default to light
-  const getStoredTheme = () => {
+<script is:inline define:vars={{lightTheme: template.lightTheme, darkTheme: template.darkTheme}}>
+  function initializeTheme() {
     const stored = localStorage.getItem('theme');
-    if (stored) return stored;
-    return defaultLightTheme;
+    let theme = stored || lightTheme;
+    
+    // Validate theme exists
+    if (!['oceanlight', 'oceandark', 'light', 'dark'].includes(theme)) {
+      theme = lightTheme;
+    }
+    
+    document.documentElement.setAttribute('data-theme', theme);
   }
-
-  // Apply theme immediately to prevent flash
-  const theme = getStoredTheme();
-  document.documentElement.setAttribute('data-theme', theme);
-
+  
+  initializeTheme();
+  
   // Re-apply theme after navigation
   document.addEventListener('astro:after-swap', () => {
-    const currentTheme = getStoredTheme();
-    document.documentElement.setAttribute('data-theme', currentTheme);
+    initializeTheme();
   });
 </script>
 <script>
-	import { themeChange } from 'theme-change'
-	themeChange()
-
-  // Re-initialize after Astro view transitions
-  document.addEventListener('astro:after-swap', () => {
-    themeChange(false); // false = don't persist to localStorage
-  });
+  function setupThemeToggle() {
+    const toggle = document.querySelector('[data-theme-toggle]');
+    if (!toggle) return;
+    
+    function setTheme(themeName) {
+      document.documentElement.setAttribute('data-theme', themeName);
+      localStorage.setItem('theme', themeName);
+      updateToggleState();
+    }
+    
+    function updateToggleState() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      toggle.checked = currentTheme === 'oceandark' || currentTheme === 'dark';
+    }
+    
+    toggle.addEventListener('change', () => {
+      const newTheme = toggle.checked ? 'oceandark' : 'oceanlight';
+      setTheme(newTheme);
+    });
+    
+    updateToggleState();
+  }
+  
+  setupThemeToggle();
+  document.addEventListener('astro:after-swap', setupThemeToggle);
 </script>
