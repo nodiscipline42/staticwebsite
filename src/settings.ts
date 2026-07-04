@@ -5,34 +5,19 @@ export const profile = {
 	author_name: '', // Author name to be highlighted in the papers section
 	research_areas: [
   {
-    title: 'water and oceanic worlds',
-    description: 'How games and other media imagine oceans, flooding worlds, and underwater environments, and how these stories shape environmental imagination.',
-    field: 'water'
-  },
-  {
-    title: 'environmental storytelling',
-    description: 'How landscapes, ruins, and ecosystems tell stories in games, film, and literature.',
+    title: 'environmental imagination',
+    description: 'How games, film, and literature imagine oceans, flooding worlds, underwater environments, ruins, and ecosystems – and how bodies, non-human life, and strange ecologies blur into these landscapes.',
     field: 'environment'
   },
   {
+    title: 'games as data',
+    description: 'Using large-scale game data – ownership, tags, genres, and coded samples – to trace patterns across thousands of titles rather than relying on a handful of case studies.',
+    field: 'data'
+  },
+  {
     title: 'stories across media',
-    description: 'How narratives travel between games, film, literature, and visual culture, and how meaning changes across media.',
-    field: 'media'
-  },
-  {
-    title: 'virtual photography',
-    description: 'Photography inside virtual worlds as both a creative practice and a research method.',
-    field: 'virtual-photography'
-  },
-  {
-    title: 'bodies, horror, and strange ecologies',
-    description: 'Moments where bodies, environments, and non-human life blur together in virtual worlds.',
-    field: 'horror'
-  },
-  {
-    title: 'images, colour, and visual atmospheres',
-    description: 'How colour, light, and visual aesthetics shape how we experience environments across media.',
-    field: 'visual-culture'
+    description: 'How narratives and visual practices – photography, colour, atmosphere – travel between games, film, literature, and visual culture, and how meaning changes as they cross media.',
+    field: 'stories'
   }
 ],
 }
