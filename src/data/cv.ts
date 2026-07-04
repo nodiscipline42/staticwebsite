@@ -258,7 +258,7 @@ export const publications = [
 ];
 export const talks = [
 	{
-		title: 'FORTHCOMING When the Western Washes Ashore: Island Space and Western Form in Red Dead Redemption 2',
+		title: 'When the Western Washes Ashore: Island Space and Western Form in Red Dead Redemption 2 (forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'II Colloquium on Island Literatures and Cultures, Azores University',
 		time: '2026',
@@ -266,7 +266,7 @@ export const talks = [
 		abstract: '',
 	},
 	{
-		title: 'FORTHCOMING Old Enough to Be Scared: Age Representation in High-Exposure Horror Games',
+		title: 'Old Enough to Be Scared: Age Representation in High-Exposure Horror Games (forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Falmouth Horror & Gaming Conference',
 		time: '2026',
