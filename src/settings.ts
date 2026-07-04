@@ -1,6 +1,6 @@
 export const profile = {
 	fullName: 'Victoria Mummelthei',
-	title: 'environmental humanistand game data analyst',
+	title: 'environmental humanist and game data analyst',
 	institute: 'Freie Universität Berlin',
 	author_name: '', // Author name to be highlighted in the papers section
 	research_areas: [
