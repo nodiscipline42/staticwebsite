@@ -10,15 +10,9 @@ const { research_areas } = profile;
 
 <Layout title="Research | Dr.phil. Victoria Mummelthei">
   <div class="prose max-w-none">
-    <h1 class="text-3xl font-bold mb-8">what I do</h1>
+    <h1 class="text-3xl font-bold mb-8">Research</h1>
 
-    <div class="mb-12">
-      <p class="text-lg mb-6">
-        I study how games and other media represent environments — oceans, ruins, ecosystems, the strange life within them — and how those representations shape the way we imagine the natural world. I work across two registers: close reading of individual games and films, and large-scale data analysis of hundreds or thousands of titles at once. The aim is to move between these scales, using data to test claims that are usually made only through a handful of examples.
-      </p>
-    </div>
-
-    <h2 class="text-2xl font-bold mb-6">research areas</h2>
+    <h2 class="text-2xl font-bold mb-6">Areas</h2>
     <div class="grid gap-8 mb-12">
       {
         research_areas.map((area) => (
@@ -47,7 +41,14 @@ const { research_areas } = profile;
       }
     </div>
 
-    <List listTitle="current projects and ideas" listItems={[
+    <div class="mb-12 rounded-xl border border-base-300/70 bg-base-100/70 p-6">
+      <h2 class="text-2xl font-bold mb-4">Methods</h2>
+      <p class="text-base leading-relaxed">
+        I move between close reading and large-scale data, following patterns across single works and wider fields of media. The aim is not to replace one with the other, but to let each sharpen the other.
+      </p>
+    </div>
+
+    <List listTitle="current projects" listItems={[
       {
         title: "An Environmental Typology of the Sea in Digital Games",
         description: "This project examines how ‘the sea’ functions and signifies in high-exposure video games, combining SteamSpy ownership data with Steam Store metadata to build an empirically weighted sample rather than a subjective one. Games are drawn from two complementary sources: sea-related Steam tags (sailing, naval, underwater, etc.) and keyword/trope-based detection across top-owned titles from 2015–2025, catching both games explicitly marketed around the sea and those where it appears as a secondary setting (e.g. Red Dead Redemption 2, Skyrim, The Witcher 3). Each game is coded for whether and how the sea appears — as void, resource, threat, threshold, or inhabitable space — testing the hypothesis that the sea most often functions as an invisible boundary rather than a navigable world. The result is a data-driven, exposure-weighted typology of the sea's cultural and design function across contemporary gaming's most-played titles."
@@ -62,9 +63,5 @@ const { research_areas } = profile;
       }
     ]} />
 
-    <h2 class="text-2xl font-bold mb-6">beyond the research</h2>
-    <p class="text-lg mb-6">
-      These projects often turn into other things too — conference papers, essays, or photographs taken inside game worlds. If you're working on something related, or just want to talk about oceans in games, feel free to get in touch.
-    </p>
   </div>
 </Layout>

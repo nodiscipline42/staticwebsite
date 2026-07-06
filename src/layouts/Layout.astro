@@ -38,8 +38,8 @@ const {
 			<input id='my-drawer' type='checkbox' class='drawer-toggle' />
 			<!-- Drawer content -->
             <div class='drawer-content bg-base-100'>
-				<div class='bg-base-100 z-50 text-base-content shadow-sm'>
-					<nav class='navbar'>
+				<div class='bg-base-100 z-50 text-base-content shadow-[0_1px_0_rgba(0,0,0,0.04)]'>
+					<nav class='navbar px-2 sm:px-4'>
 						<div class='navbar-start'>
 							{template.menu_left &&
 								<DarkLightController/>
@@ -76,9 +76,11 @@ const {
 						</div>
 					</nav>
 				</div>
-                <main class='p-8 pt-10 lg:pt-16 lg:max-w-5xl max-w-full mx-auto min-h-screen flex flex-col justify-between'>
+                <main class='mx-auto flex min-h-screen max-w-full flex-col justify-between p-6 pt-10 sm:p-8 lg:max-w-5xl lg:pt-16'>
 					<!-- Page content -->
-					<slot />
+					<div class='space-y-8'>
+						<slot />
+					</div>
 				<Footer />
 				</main>
 			</div>
