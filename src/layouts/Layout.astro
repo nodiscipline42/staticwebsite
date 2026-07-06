@@ -33,12 +33,12 @@ const {
 
 
 	</head>
-	<body class='min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(125,211,252,0.16),transparent_36%),linear-gradient(135deg,#f7f9fb_0%,#f4f7fa_45%,#eef3f8_100%)] text-base-content'>
-		<div class={`bg-base-100/0 drawer lg:drawer-open ${template.menu_left ? 'drawer-end' : ''}`}>
+	<body>
+		<div class={`bg-base-100 drawer lg:drawer-open ${template.menu_left ? 'drawer-end' : ''}`}>
 			<input id='my-drawer' type='checkbox' class='drawer-toggle' />
 			<!-- Drawer content -->
-            <div class='drawer-content bg-transparent'>
-				<div class='bg-base-100/85 z-50 border-b border-base-300/70 text-base-content backdrop-blur-sm'>
+            <div class='drawer-content bg-base-100'>
+				<div class='bg-base-100 z-50 text-base-content shadow-[0_1px_0_rgba(0,0,0,0.04)]'>
 					<nav class='navbar px-2 sm:px-4'>
 						<div class='navbar-start'>
 							{template.menu_left &&
@@ -76,12 +76,10 @@ const {
 						</div>
 					</nav>
 				</div>
-                <main class='mx-auto flex min-h-screen max-w-full flex-col justify-between px-6 py-8 sm:px-8 sm:py-10 lg:max-w-5xl lg:px-8 lg:py-12'>
+                <main class='mx-auto flex min-h-screen max-w-full flex-col justify-between p-6 pt-10 sm:p-8 lg:max-w-5xl lg:pt-16'>
 					<!-- Page content -->
 					<div class='space-y-8'>
-						<div class='rounded-[2rem] border border-base-300/70 bg-base-100/75 p-6 shadow-[0_20px_60px_rgba(15,35,55,0.06)] backdrop-blur-sm sm:p-8 lg:p-10'>
-							<slot />
-						</div>
+						<slot />
 					</div>
 				<Footer />
 				</main>
