@@ -95,15 +95,77 @@ const {
 </html>
 
 <style>
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--my-color: #252b30;
-		}
+	:root {
+		--bg: #f2f6f6;
+		--surface: #e4eef0;
+		--text: #10262b;
+		--text-muted: #4a5f63;
+		--accent: #0e7c86;
+		--accent-soft: rgba(14, 124, 134, 0.14);
 	}
+
+	:root[data-theme='dracula'] {
+		--bg: #0b1a24;
+		--surface: #12242f;
+		--text: #dbe9ec;
+		--text-muted: #8fa7ac;
+		--accent: #4fd1c5;
+		--accent-soft: rgba(79, 209, 197, 0.18);
+	}
+
 	html,
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
+		background-color: var(--bg);
+		color: var(--text);
+	}
+
+	body {
+		transition: background-color 180ms ease, color 180ms ease;
+	}
+
+	.bg-base-100 {
+		background-color: var(--surface) !important;
+	}
+
+	.bg-base-200 {
+		background-color: color-mix(in srgb, var(--surface) 80%, var(--bg) 20%) !important;
+	}
+
+	.text-base-content {
+		color: var(--text) !important;
+	}
+
+	.text-base-content\/70,
+	.text-base-content\/80 {
+		color: var(--text-muted) !important;
+	}
+
+	a {
+		color: var(--accent);
+	}
+
+	a:hover {
+		color: var(--accent);
+		opacity: 0.9;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: var(--accent);
+	}
+
+	hr,
+	.divider,
+	.section-separator {
+		background: linear-gradient(90deg, transparent, var(--accent-soft), transparent);
+		height: 1px;
+		border: none;
 	}
 </style>
