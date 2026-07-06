@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="slides-format" content="viewport">
+<title>Old Enough to Be Scared</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+@theme {
+  --color-bg:#0f0a1a;
+  --color-bg-deep:#070410;
+  --color-surface:#1a1228;
+  --color-text:#f0eaf8;
+  --color-text-secondary:#c4b8d8;
+  --color-text-muted:#8b7da8;
+  --color-accent-1:#c084fc;
+  --color-accent-2:#f472b6;
+  --color-accent-3:#fb923c;
+  --color-glass-bg:rgba(255,255,255,0.05);
+  --color-glass-border:rgba(255,255,255,0.09);
+  --color-vignette:rgba(0,0,0,0.5);
+  --font-display:'Playfair Display',serif;
+  --font-body:'DM Sans',sans-serif;
+}
+</style>
+<style>
+:root{--color-bg:#0f0a1a;--color-text:#f0eaf8;--glow-color-rgb:192,132,252}
+*{box-sizing:border-box} html,body{margin:0;background:var(--color-bg)}
+body{font-family:'DM Sans',sans-serif;color:var(--color-text);overflow:hidden;height:100vh;width:100vw}
+.deck{width:100vw;height:100vh;position:relative}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(.95);transition:opacity .7s ease,transform .7s ease;pointer-events:none;overflow:hidden}
+.slide.active{opacity:1;transform:scale(1);pointer-events:all}
+.slide>.content{position:relative;z-index:2;width:100%;max-width:1100px;padding:clamp(1.4rem,3.2vw,3.5rem)}
+.nav-controls{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:100;background:rgba(255,255,255,.05);backdrop-filter:blur(10px);padding:8px 20px;border-radius:40px;border:1px solid rgba(255,255,255,.09)}
+.nav-btn{width:36px;height:36px;border:none;background:rgba(255,255,255,.05);color:var(--color-accent-1);border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.slide-dots{display:flex;gap:6px}.slide-dots .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);cursor:pointer}.slide-dots .dot.active{background:var(--color-accent-1);transform:scale(1.3)}
+.slide-counter{font-size:.75rem;color:var(--color-text-muted);min-width:38px;text-align:center}
+.reveal{opacity:0;transform:translateY(20px)}
+@keyframes glow-pulse{0%,100%{text-shadow:0 0 20px rgba(192,132,252,.5),0 0 40px rgba(192,132,252,.2)}50%{text-shadow:0 0 35px rgba(192,132,252,.9),0 0 70px rgba(192,132,252,.4)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes float-slow{0%{transform:translate(0,0) scale(1)}25%{transform:translate(60px,-50px) scale(1.12)}50%{transform:translate(-40px,40px) scale(.9)}75%{transform:translate(50px,20px) scale(1.08)}100%{transform:translate(0,0) scale(1)}}
+@keyframes float-drift{0%{transform:translate(0,0) scale(1) rotate(0deg)}33%{transform:translate(-50px,-60px) scale(1.15) rotate(3deg)}66%{transform:translate(40px,30px) scale(.88) rotate(-2deg)}100%{transform:translate(0,0) scale(1) rotate(0deg)}}
+.gradient-mesh{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}.blob{position:absolute;border-radius:50%;filter:blur(80px);animation:float-slow 12s ease-in-out infinite}.blob:nth-child(2){animation:float-drift 16s ease-in-out infinite}.blob:nth-child(3){animation:float-slow 20s ease-in-out infinite reverse}
+.slide::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px;opacity:.03;mix-blend-mode:overlay}
+.slide::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 50%,var(--color-vignette) 100%)}
+.bar-track{background:rgba(255,255,255,.08);border-radius:7px;overflow:hidden;height:22px}.bar-fill{height:100%;width:0;border-radius:7px}
+.bubble-popup{position:absolute;background:rgba(20,12,35,.96);border:1px solid rgba(192,132,252,.3);border-radius:14px;padding:1rem 1.15rem;backdrop-filter:blur(16px);box-shadow:0 8px 32px rgba(0,0,0,.5);font-size:.78rem;line-height:1.5;color:#c4b8d8;max-width:230px;z-index:10;opacity:0;transform:scale(.85);transition:opacity .4s ease,transform .4s ease}.bubble-popup.show{opacity:1;transform:scale(1)}
+.bubble-trigger{cursor:pointer;border-bottom:1px dashed rgba(192,132,252,.5)}
+.method-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.2);border-radius:999px;padding:4px 14px;font-size:.72rem;color:#c4b8d8;letter-spacing:.04em;cursor:pointer}.method-pill span{color:var(--color-accent-1);font-weight:600}
+.card-border{border-left:3px solid var(--color-accent-1);padding-left:1rem}
+.waffle{display:grid;grid-template-columns:repeat(20,1fr);gap:4px;max-width:760px}.waffle div{aspect-ratio:1/1;border-radius:3px}
+.gradient-title{background:linear-gradient(135deg,#c084fc 0%,#f472b6 55%,#fb923c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}
+.stat-gradient{background:linear-gradient(135deg,#c084fc 0%,#f472b6 55%,#fb923c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;text-shadow:0 0 30px rgba(192,132,252,.25)}
+</style>
+</head>
+<body>
+<div class="mouse-spotlight" style="position:fixed;inset:0;z-index:99;pointer-events:none"></div>
+<div class="deck">
+
+  <div class="slide active" data-slide="1">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:500px;height:500px;top:-120px;right:-100px;background:var(--color-accent-1);opacity:0.14;"></div>
+      <div class="blob" style="width:300px;height:300px;bottom:-80px;left:-60px;background:var(--color-accent-2);opacity:0.11;"></div>
+      <div class="blob" style="width:220px;height:220px;top:42%;left:14%;background:var(--color-accent-3);opacity:0.09;"></div>
+    </div>
+    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
+    <div class="content text-center">
+      <div class="reveal" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-bottom:1.2rem;">
+        <span style="font-size:72px;animation:float 4s ease-in-out infinite;animation-delay:0.2s;display:inline-block;">👴🏻</span>
+        <span style="font-size:96px;animation:float 3.5s ease-in-out infinite;display:inline-block;">🎃</span>
+        <span style="font-size:72px;animation:float 4.2s ease-in-out infinite;animation-delay:0.4s;display:inline-block;">👵🏻</span>
+      </div>
+<h1 class="font-display text-[clamp(2.4rem,5.5vw,4.5rem)] font-black tracking-tight mb-3 reveal gradient-title">Old Enough to Be Scared</h1>
+<p class="text-[clamp(.85rem,1.4vw,1.2rem)] font-light text-text-muted tracking-[5px] uppercase mb-6 reveal">Age Representation in High-Exposure Horror Games</p>
+<p class="text-text-secondary text-sm reveal" style="opacity:.82;line-height:1.6">Victoria Mummelthei · <a href="https://www.nodiscipline.de" style="color:#c084fc;text-decoration:none;">www.nodiscipline.de</a><br>Falmouth Horror &amp; Gaming Conference 2026</p>
+</div></div>
+
+<div class="slide" data-slide="2">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-80px;right:-80px;background:var(--color-accent-1);opacity:.08"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-60px;left:-40px;background:var(--color-accent-2);opacity:.06"></div>
+  </div>
+  
+  <div class="content flex flex-col justify-center h-full pt-4">
+    
+    <div class="grid grid-cols-12 gap-12 max-w-[1050px] mx-auto w-full items-center">
+      
+      <div class="col-span-7 reveal pr-10 border-r border-glass-border">
+        <p class="uppercase tracking-[4px] text-accent-1 text-xs mb-4">The Inciting Question</p>
+        
+        <h2 class="font-display text-[clamp(2rem,4vw,3.2rem)] font-bold leading-tight mb-6">
+          Hang on, why is everybody in horror thirty-five and <span class="text-accent-2 italic">suspiciously fit?</span>
+        </h2>
+        
+        <p class="text-text-secondary text-sm leading-relaxed max-w-[450px]">
+          Horror relies entirely on vulnerable bodies to sell fear—yet it keeps aggressively defaulting to a single, highly capable physical archetype.
+        </p>
+      </div>
+
+      <div class="col-span-5 flex flex-col gap-8">
+        <div class="reveal relative pl-6 border-l-2 border-accent-1" style="transition-delay: 0.1s;">
+          <h3 class="text-accent-1 font-bold text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+             The Tool
+          </h3>
+          <p class="text-text-secondary text-xs leading-relaxed">
+            A custom <strong class="text-text">Virtual Census 2.0</strong> framework built to code high-exposure characters and track who gets to exist on screen.
+          </p>
+        </div>
+
+        <div class="reveal relative pl-6 border-l-2 border-accent-2" style="transition-delay: 0.2s;">
+          <h3 class="text-accent-2 font-bold text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+        The Sample
+          </h3>
+          <p class="text-text-secondary text-xs leading-relaxed">
+            <strong class="text-text">79 horror titles</strong> and 240 human-coded characters, weighted by player ownership metrics.
+          </p>
+        </div>
+
+        <div class="reveal relative pl-6 border-l-2 border-accent-3" style="transition-delay: 0.3s;">
+          <h3 class="text-accent-3 font-bold text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+             The Core Pattern
+          </h3>
+          <p class="text-text-secondary text-xs leading-relaxed">
+            Gender splits tell a familiar story, but <strong class="text-text">age</strong> reveals who is actively erased from the genre.
+          </p>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+  <div class="slide" data-slide="3">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:340px;height:340px;top:-60px;left:-50px;background:var(--color-accent-3);opacity:0.08;"></div>
+      <div class="blob" style="width:260px;height:260px;bottom:-50px;right:-40px;background:var(--color-accent-1);opacity:0.07;"></div>
+    </div>
+    <div class="content">
+      <p class="reveal" style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--color-accent-1);margin-bottom:0.5rem;">The Sample</p>
+      <h2 class="font-display font-bold reveal" style="font-size:clamp(1.8rem,3.8vw,2.8rem);margin-bottom:1.5rem;">180 horror games. 79 fully coded so far.</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.4rem;">
+        <div class="reveal" style="background:rgba(192,132,252,0.08);border:1px solid rgba(192,132,252,0.18);border-radius:14px;padding:1rem;text-align:center;">
+          <p style="font-size:2.2rem;font-weight:900;color:var(--color-accent-1);" class="stat-glow" data-count="180">180</p>
+          <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--color-text-muted);">Total titles</p>
+        </div>
+        <div class="reveal" style="background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.18);border-radius:14px;padding:1rem;text-align:center;">
+          <p style="font-size:2.2rem;font-weight:900;color:var(--color-accent-2);" data-count="79">79</p>
+          <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--color-text-muted);">Fully coded</p>
+        </div>
+        <div class="reveal" style="background:rgba(232,121,249,0.08);border:1px solid rgba(232,121,249,0.18);border-radius:14px;padding:1rem;text-align:center;">
+          <p style="font-size:2.2rem;font-weight:900;color:var(--color-accent-3);" data-count="240">240</p>
+          <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--color-text-muted);">Characters coded</p>
+        </div>
+        <div class="reveal" style="background:rgba(192,132,252,0.08);border:1px solid rgba(192,132,252,0.18);border-radius:14px;padding:1rem;text-align:center;">
+          <p style="font-size:2.2rem;font-weight:900;color:var(--color-accent-1);" class="stat-glow">1M+</p>
+          <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--color-text-muted);">Owners each</p>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.9rem;">
+        <div class="reveal" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.9rem 1rem;">
+          <p style="font-size:0.78rem;color:var(--color-text-muted);margin-bottom:0.2rem;">Platform</p>
+          <p style="font-size:0.9rem;color:var(--color-text-secondary);font-weight:600;">Steam (PC) primary</p>
+        </div>
+        <div class="reveal" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.9rem 1rem;">
+          <p style="font-size:0.78rem;color:var(--color-text-muted);margin-bottom:0.2rem;">Top dev countries</p>
+          <p style="font-size:0.9rem;color:var(--color-text-secondary);font-weight:600;">USA · Japan · Poland · UK</p>
+        </div>
+        <div class="reveal" style="background:rgba(249,115,22,0.07);border:1px solid rgba(249,115,22,0.15);border-radius:10px;padding:0.9rem 1rem;">
+          <p style="font-size:0.78rem;color:var(--color-text-muted);margin-bottom:0.2rem;">Current pass</p>
+          <p style="font-size:0.9rem;color:var(--color-accent-2);font-weight:600;">≥1M owners tier · 101 titles (750k owners) pending</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><
+  
+<div class="slide" data-slide="4">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:420px;height:420px;top:-90px;right:-70px;background:var(--color-accent-1);opacity:0.08;"></div>
+      <div class="blob" style="width:240px;height:240px;bottom:-50px;left:-40px;background:var(--color-accent-3);opacity:0.07;"></div>
+    </div>
+    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
+    <div class="content">
+      <p class="reveal" style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--color-accent-3);margin-bottom:0.5rem;">Horror in Context — Steam Ownership</p>
+      <h2 class="font-display font-bold reveal" style="font-size:clamp(1.7rem,3.5vw,2.5rem);margin-bottom:0.5rem;">Horror titles punch well above their weight.</h2>
+      <p class="reveal" style="font-size:0.82rem;color:var(--color-text-muted);margin-bottom:1.2rem;">Estimated Steam owner counts (SteamSpy data) — top horror titles vs. major non-horror releases from the same years.</p>
+      <div style="display:flex;flex-direction:column;gap:0.7rem;" class="reveal">
+        <p style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.3);margin-bottom:0.1rem;">Non-horror benchmarks</p>
+        <div class="bar-row">
+          <span class="bar-label" style="font-size:0.78rem;min-width:190px;">GTA V (2015)</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,rgba(255,255,255,0.3),rgba(255,255,255,0.15));" data-width="100"></div></div>
+          <span class="bar-value" style="color:rgba(255,255,255,0.45);min-width:64px;">~54M</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label" style="font-size:0.78rem;min-width:190px;">Elden Ring (2022)</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,rgba(255,255,255,0.3),rgba(255,255,255,0.15));" data-width="67"></div></div>
+          <span class="bar-value" style="color:rgba(255,255,255,0.45);min-width:64px;">~36M</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label" style="font-size:0.78rem;min-width:190px;">Hogwarts Legacy (2023)</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,rgba(255,255,255,0.3),rgba(255,255,255,0.15));" data-width="26"></div></div>
+          <span class="bar-value" style="color:rgba(255,255,255,0.45);min-width:64px;">~14M</span>
+        </div>
+        <p style="font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;color:var(--color-accent-1);margin-top:0.4rem;margin-bottom:0.1rem;">Horror titles in our sample</p>
+        <div class="bar-row">
+          <span class="bar-label" style="font-size:0.78rem;min-width:190px;">Dead by Daylight (2016)</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#c084fc,#e879f9);" data-width="65"></div></div>
+          <span class="bar-value" style="min-width:64px;">~35M</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label" style="font-size:0.78rem;min-width:190px;">Lethal Company (2023)</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#c084fc,#e879f9);" data-width="28"></div></div>
+          <span class="bar-value" style="min-width:64px;">~15M</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label" style="font-size:0.78rem;min-width:190px;">Don't Starve Together (2016)</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#c084fc,#e879f9);" data-width="28"></div></div>
+          <span class="bar-value" style="min-width:64px;">~15M</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label" style="font-size:0.78rem;min-width:190px;">Phasmophobia (2020)</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#c084fc,#e879f9);" data-width="28"></div></div>
+          <span class="bar-value" style="min-width:64px;">~15M</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label" style="font-size:0.78rem;min-width:190px;">Resident Evil 4 Remake (2023)</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#c084fc,#e879f9);" data-width="14"></div></div>
+          <span class="bar-value" style="min-width:64px;">~7.5M</span>
+        </div>
+      </div>
+      <p class="reveal" style="font-size:0.76rem;color:var(--color-text-muted);margin-top:0.9rem;font-style:italic;">Dead by Daylight (~35M) sits in the same bracket as Elden Ring. Horror isn't a niche genre on Steam — these are blockbuster player counts. Source: SteamSpy estimates.</p>
+    </div>
+  </div>
+
+<div class="slide" data-slide="5">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:400px;height:400px;top:-90px;right:-80px;background:var(--color-accent-1);opacity:0.08;"></div>
+      <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:var(--color-accent-2);opacity:0.07;"></div>
+    </div>
+    <div class="content">
+      <p class="reveal" style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:0.5rem;">Gender — The Expected Result</p>
+      <h2 class="font-display font-bold reveal" style="font-size:clamp(1.8rem,3.8vw,2.8rem);margin-bottom:0.6rem;">Male-heavy, and no room yet for nonbinary.</h2>
+      <p class="reveal" style="font-size:0.9rem;color:var(--color-text-muted);margin-bottom:1.5rem;">Across 240 coded characters in the high-exposure tier (79 games):</p>
+      <div style="display:flex;flex-direction:column;gap:1rem;" class="reveal">
+        <div class="bar-row">
+          <span class="bar-label">Male</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#c084fc,#e879f9);" data-width="58.8"></div></div>
+          <span class="bar-value" style="font-size:1rem;"><span data-count="141">0</span> <span style="font-weight:300;font-size:0.8rem;">(58.8%)</span></span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Female</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#f97316,#fb923c);" data-width="33.3"></div></div>
+          <span class="bar-value" style="font-size:1rem;"><span data-count="80">0</span> <span style="font-weight:300;font-size:0.8rem;">(33.3%)</span></span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Gender-ambiguous</span>
+          <div class="bar-track"><div class="bar-fill" style="background:rgba(255,255,255,0.25);" data-width="7.9"></div></div>
+          <span class="bar-value" style="font-size:1rem;"><span data-count="19">0</span> <span style="font-weight:300;font-size:0.8rem;">(7.9%)</span></span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Nonbinary</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#e879f9,#c084fc);" data-width="0"></div></div>
+          <span class="bar-value" style="font-size:1rem;"><span data-count="0">0</span> <span style="font-weight:300;font-size:0.8rem;">(0%)</span></span>
+        </div>
+      </div>
+      <p class="reveal" style="font-size:0.82rem;color:var(--color-text-muted);margin-top:1.2rem;font-style:italic;">All four categories share one denominator — 240 total characters — and sum to 100%. The ambiguous 7.9% is mostly masked, suited, or hazmat co-op avatars where gender genuinely cannot be coded. Zero characters were coded as explicitly nonbinary.</p>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="6">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:500px;height:500px;top:-120px;right:-100px;background:var(--color-accent-1);opacity:0.13;"></div>
+      <div class="blob" style="width:280px;height:280px;bottom:-60px;left:-50px;background:var(--color-accent-2);opacity:0.10;"></div>
+      <div class="blob" style="width:180px;height:180px;top:50%;left:10%;background:var(--color-accent-3);opacity:0.08;"></div>
+    </div>
+    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
+    <div class="content text-center">
+      <p class="reveal" style="font-size:0.8rem;letter-spacing:5px;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:0.8rem;">Age Distribution — RQ1</p>
+      <p class="reveal font-display" style="font-size:clamp(5rem,14vw,10rem);font-weight:900;line-height:1;background:linear-gradient(135deg,#c084fc,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" class="stat-glow glow-pulse">
+        78.8%
+      </p>
+      <p class="reveal font-display" style="font-size:clamp(1.3rem,3vw,2.2rem);font-weight:700;color:var(--color-text);margin-bottom:0.5rem;">of all characters are adults (18–64)</p>
+      <p class="reveal" style="font-size:1rem;color:var(--color-text-muted);">
+        Children: <strong style="color:#c084fc;">9.5%</strong> &nbsp;·&nbsp; Teens: <strong style="color:#f97316;">7.7%</strong> &nbsp;·&nbsp; Elderly: <strong style="color:#e879f9;">1.2%</strong> &nbsp;·&nbsp; Unknown: <strong style="color:rgba(255,255,255,0.4);">2.8%</strong>
+      </p>
+    </div>
+  </div>
+
+<div class="slide" data-slide="7">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:360px;height:360px;top:-70px;left:-50px;background:var(--color-accent-3);opacity:0.08;"></div>
+    <div class="blob" style="width:260px;height:260px;bottom:-50px;right:-40px;background:var(--color-accent-1);opacity:0.07;"></div>
+  </div>
+  <div class="content">
+    <p class="reveal" style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--color-accent-1);margin-bottom:0.5rem;">Age Breakdown</p>
+    <h2 class="font-display font-bold reveal" style="font-size:clamp(1.7rem,3.5vw,2.5rem);margin-bottom:1.5rem;">Horror vs. the real world</h2>
+
+    <div style="display:grid;grid-template-columns:1.08fr 0.92fr;gap:1.6rem;align-items:start;">
+      <div class="reveal" style="display:flex;flex-direction:column;gap:1rem;">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span style="font-size:0.82rem;color:var(--color-text-secondary);">Adults (18–64)</span>
+            <span style="font-size:0.82rem;color:var(--color-accent-1);font-weight:700;">78.8% horror</span>
+          </div>
+          <div style="height:18px;background:rgba(255,255,255,0.07);border-radius:9px;overflow:hidden;position:relative;">
+            <div class="bar-fill" style="height:100%;background:linear-gradient(90deg,#c084fc,#e879f9);" data-width="79"></div>
+            <div style="position:absolute;top:0;left:59%;height:100%;width:2px;background:rgba(249,115,22,0.75);"></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:3px;">
+            <span style="font-size:0.72rem;color:rgba(249,115,22,0.8);">59% real UK ↑</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span style="font-size:0.82rem;color:var(--color-text-secondary);">Children (&lt;13)</span>
+            <span style="font-size:0.82rem;color:var(--color-accent-2);font-weight:700;">9.5% horror</span>
+          </div>
+          <div style="height:18px;background:rgba(255,255,255,0.07);border-radius:9px;overflow:hidden;position:relative;">
+            <div class="bar-fill" style="height:100%;background:linear-gradient(90deg,#f97316,#fb923c);" data-width="10"></div>
+            <div style="position:absolute;top:0;left:15%;height:100%;width:2px;background:rgba(249,115,22,0.75);"></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:3px;">
+            <span style="font-size:0.72rem;color:rgba(249,115,22,0.8);">15% real UK ↓</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span style="font-size:0.82rem;color:var(--color-text-secondary);">Teens (13–17)</span>
+            <span style="font-size:0.82rem;color:var(--color-accent-3);font-weight:700;">7.7% horror</span>
+          </div>
+          <div style="height:18px;background:rgba(255,255,255,0.07);border-radius:9px;overflow:hidden;position:relative;">
+            <div class="bar-fill" style="height:100%;background:linear-gradient(90deg,#e879f9,#c084fc);" data-width="8"></div>
+            <div style="position:absolute;top:0;left:6%;height:100%;width:2px;background:rgba(249,115,22,0.75);"></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:3px;">
+            <span style="font-size:0.72rem;color:rgba(249,115,22,0.8);">6% real UK ≈</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span style="font-size:0.82rem;color:var(--color-text-secondary);">Elderly (65+)</span>
+            <span style="font-size:0.82rem;font-weight:700;color:#f87171;">1.2% horror</span>
+          </div>
+          <div style="height:18px;background:rgba(255,255,255,0.07);border-radius:9px;overflow:hidden;position:relative;">
+            <div class="bar-fill" style="height:100%;background:linear-gradient(90deg,#f87171,#ef4444);" data-width="1"></div>
+            <div style="position:absolute;top:0;left:19%;height:100%;width:2px;background:rgba(249,115,22,0.75);"></div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;margin-top:3px;">
+            <span style="font-size:0.72rem;color:rgba(249,115,22,0.8);">19% real UK ↓↓</span>
+          </div>
+        </div>
+
+        <p style="font-size:0.72rem;color:var(--color-text-muted);margin-top:0.25rem;line-height:1.45;">
+          UK benchmark uses ONS ageing categories: 0–15, 16–64, and 65+.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <div class="rounded-[24px] border border-glass-border bg-glass-bg backdrop-blur-xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <p class="text-sm uppercase tracking-[0.18em] text-text-muted">Visual share</p>
+              <h3 class="text-[1.08rem] font-semibold text-text">Where older bodies disappear</h3>
+            </div>
+            <div class="text-right">
+              <div class="text-[2rem] font-black text-emerald-300 leading-none">1.2%</div>
+              <div class="text-[0.65rem] uppercase tracking-[0.16em] text-text-muted mt-1">Elderly in horror</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-10 gap-[6px] mt-4 mx-auto" id="uk-age-waffle" style="max-width:260px;">
+            <script>
+              (() => {
+                const waffle = document.currentScript.parentElement;
+                const cells = [];
+                for (let i = 0; i < 100; i++) {
+                  const cell = document.createElement('div');
+                  cell.className = 'waffle-cell';
+                  cell.style.aspectRatio = '1 / 1';
+                  cell.style.borderRadius = '7px';
+                  cell.style.opacity = '0';
+                  cell.style.transform = 'translateY(14px)';
+                  if (i < 79) {
+                    cell.style.background = 'linear-gradient(135deg, #ec4899, #fb923c)';
+                  } else if (i < 99) {
+                    cell.style.background = 'linear-gradient(135deg, #38bdf8, #67e8f9)';
+                  } else {
+                    cell.style.background = 'linear-gradient(135deg, #34d399, #a3e635)';
+                  }
+                  cell.style.transition = `opacity 0.28s ease ${i * 0.012}s, transform 0.28s ease ${i * 0.012}s`;
+                  cells.push(cell);
+                  waffle.appendChild(cell);
+                }
+                requestAnimationFrame(() => {
+                  cells.forEach(cell => {
+                    cell.style.opacity = '1';
+                    cell.style.transform = 'translateY(0)';
+                  });
+                });
+              })();
+            </script>
+          </div>
+
+          <div class="grid grid-cols-1 gap-2 mt-4 text-[0.8rem]">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full" style="background:linear-gradient(135deg,#ec4899,#fb923c);flex:0 0 auto;"></span>
+              <span class="text-text-secondary">Adults 78.8%</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-sky-400" style="flex:0 0 auto;"></span>
+              <span class="text-text-secondary">Children + teens 20.0%</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-400" style="flex:0 0 auto;"></span>
+              <span class="text-text-secondary">Elderly 1.2%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-slide="8">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:420px;height:420px;top:-100px;right:-80px;background:#f87171;opacity:0.09;"></div>
+    <div class="blob" style="width:240px;height:240px;bottom:-40px;left:-30px;background:var(--color-accent-3);opacity:0.07;"></div>
+  </div>
+
+  <div class="content">
+    <p class="uppercase tracking-[4px] text-red-400 text-xs mb-3 reveal">The 1.2% Problem</p>
+    <h2 class="font-display text-[clamp(1.8rem,3.8vw,3rem)] font-bold mb-10 reveal">
+      Elderly characters don't disappear. <br><span class="text-red-400">They just change jobs.</span>
+    </h2>
+
+    <div class="grid grid-cols-3 gap-6 max-w-[1000px]">
+      <div class="reveal flex flex-col items-center text-center group">
+        <div class="w-24 h-24 rounded-full bg-red-900/20 border border-red-500/30 flex items-center justify-center mb-4 transition-transform group-hover:rotate-12" style="animation: jitter 0.2s infinite alternate;">
+          <span class="text-4xl">👹</span>
+        </div>
+        <h3 class="text-red-300 font-bold uppercase tracking-widest text-xs mb-2">The Hag</h3>
+        <p class="text-text-secondary text-[0.75rem] leading-relaxed italic">"Decrepit = Dangerous"</p>
+      </div>
+
+      <div class="reveal flex flex-col items-center text-center group" style="transition-delay: 0.1s;">
+        <div class="w-24 h-24 rounded-full bg-orange-900/20 border border-orange-500/30 flex items-center justify-center mb-4 transition-transform group-hover:translate-y-[-10px]" style="animation: float 3s ease-in-out infinite;">
+          <span class="text-4xl">🪦</span>
+        </div>
+        <h3 class="text-orange-300 font-bold uppercase tracking-widest text-xs mb-2">The Sacrifice</h3>
+        <p class="text-text-secondary text-[0.75rem] leading-relaxed italic">"Expendable Exposition"</p>
+      </div>
+
+      <div class="reveal flex flex-col items-center text-center group" style="transition-delay: 0.2s;">
+        <div class="w-24 h-24 rounded-full bg-green-900/20 border border-green-500/30 flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
+          <span class="text-4xl">✨</span>
+        </div>
+        <h3 class="text-green-400 font-bold uppercase tracking-widest text-xs mb-2">The Unicorn</h3>
+        <p class="text-text-secondary text-[0.75rem] leading-relaxed italic">"Competence ≠ Monster"</p>
+      </div>
+    </div>
+
+    <div class="mt-12 p-6 border-t border-glass-border reveal">
+      <p class="text-text-muted text-[0.75rem] uppercase tracking-widest text-center">
+        Mainstream games: ~3% elderly representation | Horror: <span class="text-red-400 font-bold">1.2% (And mostly hostile)</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes jitter {
+    0% { transform: translate(1px, 1px); }
+    100% { transform: translate(-1px, -1px); }
+  }
+</style>
+
+<div class="slide" data-slide="9">
+<div class="gradient-mesh"><div class="blob" style="width:380px;height:380px;top:-90px;right:-70px;background:var(--color-accent-3);opacity:.08"></div><div class="blob" style="width:250px;height:250px;bottom:-60px;left:-40px;background:var(--color-accent-1);opacity:.07"></div></div>
+<div class="content"><p class="uppercase tracking-[4px] text-accent-1 text-xs mb-3 reveal">RQ5 intersectional finding</p><h2 class="font-display text-[clamp(1.6rem,3.5vw,2.6rem)] font-bold mb-2 reveal">Game design is the gatekeeper for diversity</h2><p class="text-text-muted text-sm mb-6 reveal"> </p><div class="grid grid-cols-2 gap-4"><div class="bg-glass-bg border border-glass-border rounded-xl p-5 reveal"><p class="text-accent-3 font-bold text-sm uppercase tracking-wider mb-2">Action-Horror</p><p class="text-[1.8rem] font-black text-text mb-1">100%</p><p class="text-text-secondary text-xs leading-relaxed">adult leads. Combat-heavy play assumes peak physical fitness.</p></div><div class="bg-glass-bg border border-glass-border rounded-xl p-5 reveal"><p class="text-accent-1 font-bold text-sm uppercase tracking-wider mb-2">Psychological-Horror</p><p class="text-[1.8rem] font-black text-text mb-1">~83%</p><p class="text-text-secondary text-xs leading-relaxed">adult leads — but children and teens appear more often where narrative carries fear.</p></div><div class="bg-glass-bg border border-glass-border rounded-xl p-5 reveal"><p class="text-accent-2 font-bold text-sm uppercase tracking-wider mb-2">Co-op / Multiplayer</p><p class="text-[1.8rem] font-black text-text mb-1">~72%</p><p class="text-text-secondary text-xs leading-relaxed">adult — with lots of masked, suited, or age-erased avatars.</p></div><div class="bg-glass-bg border border-glass-border rounded-xl p-5 reveal"><p class="text-text-secondary font-bold text-sm uppercase tracking-wider mb-2">Systemic Sandbox</p><p class="text-[1.8rem] font-black text-text mb-1">Most varied</p><p class="text-text-secondary text-xs leading-relaxed">Management and survival systems allow more unusual ages and roles.</p></div></div></div></div>
+
+<div class="slide" data-slide="10">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:440px;height:440px;top:-100px;right:-80px;background:var(--color-accent-3);opacity:0.10;"></div>
+    <div class="blob" style="width:280px;height:280px;bottom:-60px;left:-50px;background:var(--color-accent-2);opacity:0.08;"></div>
+  </div>
+  <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;"></canvas>
+  <div class="content">
+    <p class="uppercase tracking-[4px] text-accent-3 text-xs mb-3 reveal">The "Default Body" in Horror</p>
+    
+    <h2 class="font-display text-[clamp(1.8rem,3.8vw,3rem)] font-bold mb-8 reveal leading-tight">
+      78.8% adult is not an accident.<br>
+      <span class="text-text-muted">It's ideology.</span>
+    </h2>
+    
+    <div class="grid grid-cols-2 gap-10 items-center max-w-[1000px]">
+      
+      <div class="flex flex-col gap-7 mt-2">
+        <div class="reveal relative pl-6 border-l-2 border-accent-3">
+          <div class="absolute -left-5 -top-4 text-6xl font-black opacity-[0.04] text-white select-none">01</div>
+          <h3 class="text-accent-3 font-bold text-sm uppercase tracking-wider mb-2">Mechanics Demand Youth</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Combat, stealth, and stamina systems are implicitly built for peak physical performance, not demography.</p>
+        </div>
+        
+        <div class="reveal relative pl-6 border-l-2 border-accent-1">
+          <div class="absolute -left-5 -top-4 text-6xl font-black opacity-[0.04] text-white select-none">02</div>
+          <h3 class="text-accent-1 font-bold text-sm uppercase tracking-wider mb-2">Cultivated Survival</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">If only young adults survive on screen, players inevitably build a mental model of who belongs in a crisis.</p>
+        </div>
+        
+        <div class="reveal relative pl-6 border-l-2 border-accent-2">
+          <div class="absolute -left-5 -top-4 text-6xl font-black opacity-[0.04] text-white select-none">03</div>
+          <h3 class="text-accent-2 font-bold text-sm uppercase tracking-wider mb-2">Aging as the Threat</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">Aging isn't treated as a neutral phase of life. When games reach for old age, they reach for the monster.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4 reveal">
+        <div class="bg-red-500/5 border border-red-500/20 rounded-2xl p-8 text-center relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-b from-red-500/10 to-transparent opacity-50 pointer-events-none"></div>
+          <p class="text-[6rem] font-black text-red-400 leading-none mb-2" style="animation:glow-pulse 3s ease-in-out infinite;">0</p>
+          <p class="text-red-300 font-bold uppercase tracking-wider text-sm mb-1">Playable Elderly</p>
+          <p class="text-red-400/70 text-xs">in M-rated titles</p>
+        </div>
+        
+        <div class="bg-glass-bg border border-glass-border rounded-2xl p-6 flex justify-between items-center px-8">
+          <div class="text-left">
+            <p class="text-accent-3 font-bold uppercase tracking-wider text-sm mb-1">The Sole Exception</p>
+            <p class="text-text-muted text-xs">Wickerbottom (Out of 79 games)</p>
+          </div>
+          <p class="text-[3.5rem] font-black text-accent-3 leading-none drop-shadow-lg">1</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="slide" data-slide="11">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:380px;height:380px;top:-80px;right:-60px;background:var(--color-accent-1);opacity:0.08;"></div>
+      <div class="blob" style="width:220px;height:220px;bottom:-40px;left:-30px;background:var(--color-accent-2);opacity:0.07;"></div>
+    </div>
+    <div class="content">
+      <p class="reveal" style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--color-accent-1);margin-bottom:0.5rem;">Race & Ethnicity</p>
+      <h2 class="font-display font-bold reveal" style="font-size:clamp(1.8rem,3.8vw,2.7rem);margin-bottom:1.3rem;">White-dominant, with notable regional exceptions.</h2>
+      <div style="display:flex;flex-direction:column;gap:0.85rem;" class="reveal">
+        <div class="bar-row">
+          <span class="bar-label">White/European</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#c084fc,#e879f9);" data-width="52"></div></div>
+          <span class="bar-value">~52%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Asian/Pacific</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#f97316,#fb923c);" data-width="22"></div></div>
+          <span class="bar-value">~22%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Black/African</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#e879f9,#c084fc);" data-width="10"></div></div>
+          <span class="bar-value">~10%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Hispanic/Latinx</span>
+          <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#34d399,#059669);" data-width="6"></div></div>
+          <span class="bar-value">~6%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Ambiguous/Other</span>
+          <div class="bar-track"><div class="bar-fill" style="background:rgba(255,255,255,0.2);" data-width="10"></div></div>
+          <span class="bar-value">~10%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-slide="12">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:380px;height:380px;top:-80px;left:-50px;background:var(--color-accent-2);opacity:0.08;"></div>
+      <div class="blob" style="width:240px;height:240px;bottom:-50px;right:-40px;background:var(--color-accent-3);opacity:0.07;"></div>
+    </div>
+    <div class="content">
+      <p class="reveal" style="font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--color-accent-2);margin-bottom:0.5rem;">Rating × Age — RQ4</p>
+      <h2 class="font-display font-bold reveal" style="font-size:clamp(1.7rem,3.5vw,2.5rem);margin-bottom:1.3rem;">Rated M locks in the adult default.</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+        <div class="reveal" style="background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);border-radius:12px;padding:1.1rem;text-align:center;">
+          <p style="font-size:0.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#f87171;margin-bottom:0.5rem;">ESRB M / PEGI 18</p>
+          <p style="font-size:2rem;font-weight:900;color:#f87171;" data-count="96">0</p>
+          <p style="font-size:0.85rem;color:var(--color-text-secondary);">%</p>
+          <p style="font-size:0.75rem;color:var(--color-text-muted);">of characters adult in M-rated titles</p>
+          <p style="font-size:0.72rem;color:rgba(248,113,113,0.5);margin-top:0.4rem;">0 playable elderly</p>
+        </div>
+        <div class="reveal" style="background:rgba(250,204,21,0.08);border:1px solid rgba(250,204,21,0.2);border-radius:12px;padding:1.1rem;text-align:center;">
+          <p style="font-size:0.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fbbf24;margin-bottom:0.5rem;">ESRB T / PEGI 12–16</p>
+          <p style="font-size:2rem;font-weight:900;color:#fbbf24;" data-count="54">0</p>
+          <p style="font-size:0.85rem;color:var(--color-text-secondary);">%</p>
+          <p style="font-size:0.75rem;color:var(--color-text-muted);">adult — teen and child leads appear here</p>
+          <p style="font-size:0.72rem;color:rgba(250,204,21,0.5);margin-top:0.4rem;">FNAF · Little Nightmares · OMORI</p>
+        </div>
+        <div class="reveal" style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:12px;padding:1.1rem;text-align:center;">
+          <p style="font-size:0.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4ade80;margin-bottom:0.5rem;">E / E10+ / None</p>
+          <p style="font-size:2rem;font-weight:900;color:#4ade80;">Mixed</p>
+          <p style="font-size:0.75rem;color:var(--color-text-muted);margin-top:0.3rem;">Highest child-lead ratio + most ambiguous identities</p>
+          <p style="font-size:0.72rem;color:rgba(34,197,94,0.5);margin-top:0.4rem;">Undertale · DREDGE · Hello Neighbor</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="slide" data-slide="13">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:400px;height:400px;top:-80px;right:-60px;background:var(--color-accent-2);opacity:.09"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-50px;left:-30px;background:var(--color-accent-3);opacity:.08"></div>
+  </div>
+  
+  <div class="content flex flex-col justify-center h-full pt-4">
+    
+    <div class="text-center mb-10">
+      <p class="uppercase tracking-[4px] text-accent-2 text-xs mb-2 reveal">Limitations</p>
+      <h2 class="font-display text-[clamp(1.5rem,3.5vw,2.4rem)] font-bold reveal leading-tight">
+        What this study cannot <span class="text-text-muted italic">yet</span> claim
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-2 gap-x-16 gap-y-10 max-w-[950px] mx-auto w-full">
+
+      <div class="reveal">
+        <div class="flex justify-between text-xs text-text-muted mb-1">
+          <span class="uppercase tracking-widest text-accent-2 font-bold">Target: Human Bodies</span>
+          <span>Abstract Entities ???</span>
+        </div>
+        <div class="bar-track mb-3">
+          <div class="bar-fill" data-width="65" style="background:linear-gradient(90deg, #f472b6, transparent)"></div>
+        </div>
+        <h3 class="font-display text-[clamp(1.1rem,1.8vw,1.4rem)] font-bold text-text-secondary">"How old is a mass of tentacles?"</h3>
+        <p class="text-text-muted text-[0.7rem] uppercase tracking-widest mt-1">Non-human antagonists break demographic coding</p>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.1s;">
+        <div class="flex justify-between text-xs text-text-muted mb-1">
+          <span class="uppercase tracking-widest text-accent-1 font-bold">Platform: PC / Steam Hits</span>
+          <span>Consoles & Indie 0%</span>
+        </div>
+        <div class="bar-track mb-3">
+          <div class="bar-fill" data-width="85" style="background:linear-gradient(90deg, #c084fc, transparent)"></div>
+        </div>
+        <h3 class="font-display text-[clamp(1.1rem,1.8vw,1.4rem)] font-bold text-text-secondary">"Sorry, console warriors."</h3>
+        <p class="text-text-muted text-[0.7rem] uppercase tracking-widest mt-1">1M+ ownership skews toward big IP formulas</p>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.2s;">
+        <div class="flex justify-between text-xs text-text-muted mb-1">
+          <span class="uppercase tracking-widest text-accent-3 font-bold">Bin Size: 18–64 Adult</span>
+          <span>Nuance Lost</span>
+        </div>
+        <div class="bar-track mb-3">
+          <div class="bar-fill" data-width="78" style="background:linear-gradient(90deg, #fb923c, transparent)"></div>
+        </div>
+        <h3 class="font-display text-[clamp(1.1rem,1.8vw,1.4rem)] font-bold text-text-secondary">"18 to 64 is doing irresponsible heavy lifting."</h3>
+        <p class="text-text-muted text-[0.7rem] uppercase tracking-widest mt-1">Giant categories mask systemic visual cues</p>
+      </div>
+
+      <div class="reveal" style="transition-delay: 0.3s;">
+        <div class="flex justify-between text-xs text-text-muted mb-1">
+          <span class="uppercase tracking-widest text-text-secondary font-bold">Baseline: Real-World Census</span>
+          <span>Virtual Spaces ???</span>
+        </div>
+        <div class="bar-track mb-3">
+          <div class="bar-fill" data-width="40" style="background:linear-gradient(90deg, rgba(255,255,255,0.3), transparent)"></div>
+        </div>
+        <h3 class="font-display text-[clamp(1.1rem,1.8vw,1.4rem)] font-bold text-text-secondary">"Comparing <em>Amnesia</em> to the Zensus is an art form."</h3>
+        <p class="text-text-muted text-[0.7rem] uppercase tracking-widest mt-1">Real-world data isn't a perfect gaming standard</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-slide="14">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:380px;height:380px;top:-90px;left:-70px;background:var(--color-accent-2);opacity:.09"></div>
+    <div class="blob" style="width:250px;height:250px;bottom:-60px;right:-40px;background:var(--color-accent-1);opacity:.07"></div>
+  </div>
+  
+  <div class="content flex flex-col justify-center h-full pt-4">
+    <p class="uppercase tracking-[4px] text-accent-1 text-xs mb-3 text-center reveal">What this opens up</p>
+    <h2 class="font-display text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-10 text-center reveal">Building the next version</h2>
+    
+    <div class="grid grid-cols-3 grid-rows-2 gap-5 max-w-[950px] mx-auto w-full">
+      <div class="col-span-2 bg-glass-bg border border-glass-border rounded-2xl p-6 relative overflow-hidden reveal flex flex-col justify-between">
+        <div class="absolute top-0 right-0 p-4 text-[4rem] font-black opacity-[0.03] select-none">01</div>
+        <div>
+          <h3 class="font-display text-[clamp(1.2rem,2vw,1.6rem)] font-bold text-accent-3 mb-2">Aesthetic Age</h3>
+          <p class="text-text-secondary text-sm italic mb-5">"18 to 64 is doing an irresponsible amount of heavy lifting."</p>
+          <div class="flex gap-3 mb-6">
+            <span class="px-3 py-1 border border-accent-3/30 rounded-full text-[0.7rem] uppercase tracking-widest text-accent-3">Posture</span>
+            <span class="px-3 py-1 border border-accent-3/30 rounded-full text-[0.7rem] uppercase tracking-widest text-accent-3">Wrinkles</span>
+            <span class="px-3 py-1 border border-accent-3/30 rounded-full text-[0.7rem] uppercase tracking-widest text-accent-3">Voice</span>
+          </div>
+        </div>
+        <p class="text-text-muted text-[0.7rem] uppercase tracking-widest">Replacing blunt demographics with visual coding</p>
+      </div>
+
+      <div class="col-span-1 bg-glass-bg border border-glass-border rounded-2xl p-6 relative overflow-hidden reveal flex flex-col justify-between" style="transition-delay: 0.1s;">
+        <div class="absolute top-0 right-0 p-4 text-[4rem] font-black opacity-[0.03] select-none">02</div>
+        <div>
+          <h3 class="font-display text-[clamp(1.2rem,2vw,1.6rem)] font-bold text-accent-1 mb-5">Mechanic Age</h3>
+          <div class="space-y-4 mb-6">
+            <div>
+              <div class="flex justify-between text-[0.6rem] text-accent-1 uppercase tracking-widest mb-1.5"><span>Stamina</span><span>Depleting</span></div>
+              <div class="h-1 bg-white/10 rounded-full overflow-hidden"><div class="h-full bg-accent-1 w-2/3" style="animation: pulse 2s infinite;"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-[0.6rem] text-accent-2 uppercase tracking-widest mb-1.5"><span>Sanity</span><span>Fragile</span></div>
+              <div class="h-1 bg-white/10 rounded-full overflow-hidden"><div class="h-full bg-accent-2 w-1/3"></div></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-text-muted text-[0.7rem] uppercase tracking-widest">How systems inherently code for the body</p>
+      </div>
+
+      <div class="col-span-2 bg-glass-bg border border-glass-border rounded-2xl p-6 relative overflow-hidden reveal flex flex-col justify-between" style="transition-delay: 0.2s;">
+        <div class="absolute top-0 right-0 p-4 text-[4rem] font-black opacity-[0.03] select-none">03</div>
+        <div>
+          <h3 class="font-display text-[clamp(1.2rem,2vw,1.6rem)] font-bold text-[#f472b6] mb-2">Diachronic Change</h3>
+          <p class="text-text-secondary text-sm italic mb-6">"Did the genre get more or less ageist, or was it always like this?"</p>
+          <div class="flex items-center gap-0 w-full mb-6 opacity-80 pl-2 pr-4">
+            <div class="text-[0.65rem] font-bold text-[#f472b6] mr-4">1990s</div>
+            <div class="h-2 w-2 rounded-full bg-[#f472b6] shadow-[0_0_10px_#f472b6]"></div>
+            <div class="flex-1 h-px bg-gradient-to-r from-[#f472b6] to-white/20"></div>
+            <div class="h-1.5 w-1.5 rounded-full bg-white/40"></div>
+            <div class="flex-1 h-px bg-white/20"></div>
+            <div class="h-1.5 w-1.5 rounded-full bg-white/20"></div>
+            <div class="flex-1 h-px bg-white/20"></div>
+            <div class="h-2 w-2 rounded-full border border-white/40"></div>
+            <div class="text-[0.65rem] text-text-muted ml-4">Present</div>
+          </div>
+        </div>
+        <p class="text-text-muted text-[0.7rem] uppercase tracking-widest">Tracking the disappearance of older bodies over time</p>
+      </div>
+
+      <div class="col-span-1 border border-[#4ade80]/30 bg-[#4ade80]/5 rounded-2xl p-6 flex flex-col items-center justify-center text-center reveal shadow-[0_0_30px_rgba(74,222,128,0.05)]" style="transition-delay: 0.3s;">
+        <h3 class="font-display text-[clamp(2rem,3vw,2.5rem)] font-black text-[#4ade80] mb-3 leading-none drop-shadow-md">Send<br>coffee.</h3>
+        <p class="text-text-secondary text-[0.65rem] uppercase tracking-widest border-t border-[#4ade80]/20 pt-3 w-full">76 games left to code</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-slide="15">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:500px;height:500px;top:-120px;right:-100px;background:var(--color-accent-1);opacity:.13"></div>
+    <div class="blob" style="width:330px;height:330px;bottom:-80px;left:-60px;background:var(--color-accent-2);opacity:.10"></div>
+    <div class="blob" style="width:200px;height:200px;top:35%;left:15%;background:var(--color-accent-3);opacity:.09"></div>
+  </div>
+  
+  <canvas class="particle-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1"></canvas>
+  
+  <div class="content flex flex-col justify-center h-full pt-4" style="pointer-events:none;">
+
+    <div class="mb-12 text-center reveal">
+      <p class="uppercase tracking-[4px] text-accent-1 text-xs mb-3">Where we leave off</p>
+      <div class="font-display font-black leading-tight">
+        <span class="text-[clamp(2.4rem,4.5vw,4rem)] gradient-title block">Fear is a young person's game.</span>
+        <span class="block text-text-muted italic text-[clamp(1.5rem,3vw,2.5rem)] font-light mt-1">(Apparently.)</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-12 items-center max-w-[950px] mx-auto w-full mb-16">
+
+      <div class="flex flex-col gap-8 reveal border-r border-glass-border pr-8 text-right">
+        <div>
+          <p class="text-[3rem] font-black text-accent-1 leading-none mb-1">78.8%</p>
+          <p class="text-text-secondary text-sm font-bold uppercase tracking-wider">Adult default</p>
+          <p class="text-text-muted text-[0.7rem] uppercase tracking-widest mt-1">of all coded characters</p>
+        </div>
+        
+        <div>
+          <p class="text-[2.5rem] font-black text-accent-3 leading-none mb-1">1.2%</p>
+          <p class="text-text-secondary text-sm font-bold uppercase tracking-wider">Elderly characters</p>
+        </div>
+        
+        <div>
+          <p class="text-[2.5rem] font-black text-[#4ade80] leading-none mb-1 drop-shadow-[0_0_15px_rgba(74,222,128,0.2)]">1</p>
+          <p class="text-[#4ade80] text-sm font-bold uppercase tracking-wider">Playable elderly</p>
+        </div>
+      </div>
+
+      <div class="reveal pl-4 relative">
+        <p class="text-accent-2 text-[0.7rem] uppercase tracking-[3px] font-bold mb-4 flex items-center gap-2">
+          <span>🗞</span> Industry Note
+        </p>
+        
+        <h3 class="font-display text-[clamp(1.3rem,2.2vw,1.8rem)] font-normal leading-relaxed text-text-secondary mb-6 relative">
+          "The games industry still isn't making games for older & retired players — <strong class="text-white">can horror ever be a 'grey gamer's' genre?</strong>"
+          
+          <style>
+            @keyframes joke-pop {
+              0% { opacity: 0; transform: translateY(10px) rotate(2deg) scale(0.9); }
+              100% { opacity: 1; transform: translateY(0) rotate(2deg) scale(1); }
+            }
+          </style>
+          
+          <div class="absolute -bottom-8 -right-8 bg-glass-bg border border-accent-1/40 text-accent-1 text-[0.65rem] px-4 py-2 rounded-xl italic shadow-2xl backdrop-blur-md z-10" style="opacity:0; animation: joke-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 4s forwards;">
+            *(Yes, if we finally make the UI font bigger than 8px)*
+          </div>
+        </h3>
+        
+        <div>
+          <p class="text-text-muted text-[0.75rem] uppercase tracking-widest font-bold">GamesIndustry.biz</p>
+          <p class="text-text-muted/60 text-[0.7rem] italic mt-1 leading-snug max-w-[350px]">
+            "Nobody's making games for the retired people: The growing yet underserved market for grey gamers"
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center reveal">
+      <p class="text-accent-1 font-bold text-[0.85rem] tracking-[2px] uppercase mb-2">
+        Thank you for listening to me counting fictional bodies.
+      </p>
+      <p class="text-text-muted text-xs italic">
+        Questions, critiques, and methodology tips welcome.
+      </p>
+    </div>
+
+  </div>
+</div>
+  
+<div class="nav-controls"><button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button><div class="slide-dots" id="dots"></div><button class="nav-btn" onclick="changeSlide(1)">&#8250;</button><span class="slide-counter" id="counter">1 / 15</span></div>
+<script>
+let current=1;const total=document.querySelectorAll('.slide').length;const dotsContainer=document.getElementById('dots');const counter=document.getElementById('counter');counter.textContent='1 / '+total;for(let i=1;i<=total;i++){const dot=document.createElement('div');dot.className='dot'+(i===1?' active':'');dot.onclick=()=>goToSlide(i);dotsContainer.appendChild(dot)}
+function goToSlide(n){const prev=document.querySelector('.slide.active');const next=document.querySelector(`.slide[data-slide="${n}"]`);if(prev)prev.classList.remove('active');if(next){next.classList.add('active');animateSlide(next)}current=n;updateNav()}
+function changeSlide(dir){let n=current+dir;if(n<1)n=total;if(n>total)n=1;goToSlide(n)}
+function updateNav(){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i+1===current));counter.textContent=current+' / '+total}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();changeSlide(1)}if(e.key==='ArrowLeft'){e.preventDefault();changeSlide(-1)}})
+let touchStartX=0;document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX});document.addEventListener('touchend',e=>{const diff=touchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50)changeSlide(diff>0?1:-1)})
+function animateSlide(slide){slide.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transition='none';el.style.opacity='0';el.style.transform='translateY(20px)';el.offsetHeight;const delay=i*.07;el.style.transition=`opacity .35s ease ${delay}s, transform .35s ease ${delay}s`;el.style.opacity='1';el.style.transform='translateY(0px)'});animateEffects(slide)}
+function animateEffects(slide){slide.querySelectorAll('[data-count]:not(.counted)').forEach(el=>{el.classList.add('counted');const target=parseInt(el.dataset.count);let cur=0;const step=target/40;const t=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(t)}el.textContent=Math.round(cur).toLocaleString()},30)});slide.querySelectorAll('.bar-fill:not(.fill-init)').forEach((bar,i)=>{bar.classList.add('fill-init');bar.style.width='0%';bar.style.transition=`width .6s ease ${i*.08}s`;bar.offsetHeight;bar.style.width=bar.dataset.width+'%'})}
+function toggleBubble(id){document.querySelectorAll('.bubble-popup').forEach(b=>{if(b.id!==id)b.classList.remove('show')});const el=document.getElementById(id);if(el)el.classList.toggle('show')}
+const triggerAdult=document.getElementById('trigger-adult');if(triggerAdult){triggerAdult.addEventListener('click',()=>toggleBubble('bubble-adult'))}
+document.addEventListener('click',e=>{if(!e.target.closest('.bubble-popup')&&!e.target.closest('.bubble-trigger')&&!e.target.closest('.method-pill')){document.querySelectorAll('.bubble-popup').forEach(b=>b.classList.remove('show'))}})
+document.addEventListener('mousemove',e=>{const s=document.querySelector('.mouse-spotlight');if(s)s.style.background=`radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(192,132,252,.06), transparent 40%)`})
+window.initParticles=function(canvas,opts){if(!canvas)return;const ctx=canvas.getContext('2d');canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;const interactive=opts.interactive!==false,count=opts.count||40;let mx=-1000,my=-1000;const particles=Array.from({length:count},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,size:Math.random()*2+.8,alpha:Math.random()*.3+.08}));if(interactive){canvas.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top})}(function loop(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{if(interactive){const dx=p.x-mx,dy=p.y-my,d=Math.sqrt(dx*dx+dy*dy);if(d<120){const f=(120-d)/120*2;p.vx+=(dx/d)*f*.1;p.vy+=(dy/d)*f*.1}}p.vx*=.98;p.vy*=.98;p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=`rgba(192,132,252,${p.alpha})`;ctx.fill()});requestAnimationFrame(loop)})()}
+document.querySelectorAll('.particle-canvas').forEach(c=>initParticles(c,{interactive:true,count:50}));document.querySelectorAll('.particle-canvas-ambient').forEach(c=>initParticles(c,{interactive:false,count:18}));try{animateSlide(document.querySelector('.slide.active'))}catch(e){}
+</script>
+<div id="speaker-timer" style="
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  font-family: monospace;
+  font-size: 20px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  z-index: 9999;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+">
+  <span id="timer-display">14:00</span>
+  <span id="timer-icon" style="font-size: 14px;">▶</span>
+</div>
+
+<script>
+(function() {
+  let totalSeconds = 14 * 60;
+  let intervalId = null;
+  let running = false;
+
+  const container = document.getElementById('speaker-timer');
+  const display = document.getElementById('timer-display');
+  const icon = document.getElementById('timer-icon');
+
+  function updateDisplay() {
+    const mins = Math.floor(Math.abs(totalSeconds) / 60);
+    const secs = Math.abs(totalSeconds) % 60;
+    const sign = totalSeconds < 0 ? "-" : "";
+    display.textContent = `${sign}${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+
+    if (totalSeconds <= 60 && totalSeconds > 0) {
+      container.style.background = "rgba(200,50,0,0.85)";
+    } else if (totalSeconds <= 0) {
+      container.style.background = "rgba(150,0,0,0.95)";
+    } else {
+      container.style.background = "rgba(0,0,0,0.75)";
+    }
+  }
+
+  function tick() {
+    totalSeconds -= 1;
+    updateDisplay();
+  }
+
+  function toggleTimer() {
+    if (running) {
+      clearInterval(intervalId);
+      running = false;
+      icon.textContent = "▶";
+    } else {
+      intervalId = setInterval(tick, 1000);
+      running = true;
+      icon.textContent = "⏸";
+    }
+  }
+
+  container.addEventListener('click', toggleTimer);
+  updateDisplay();
+})();
+</script>
+</body>
+</html>
