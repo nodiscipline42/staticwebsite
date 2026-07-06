@@ -18,7 +18,7 @@ const recentPublications = publications.slice(0, 5)
 
 <Layout>
 	<!-- Hero Section -->
-	<section class='flex items-center gap-12 border-b pb-12'>
+	<section class='pb-10'>
 		<Hero
 			fullName={fullName}
 			title={title}
@@ -28,12 +28,12 @@ const recentPublications = publications.slice(0, 5)
 	</section>
 
 	<!-- Research Areas -->
-	<section class='py-12 border-b'>
+	<section class='py-10'>
 		<Grid gridTitle='Research Areas' gridItems={research_areas} />
 	</section>
 
 	<!-- Latest Presentation -->
-	<section class='py-12'>
+	<section class='py-10'>
 		<div class='mb-8'>
 			<h2 class='text-3xl font-bold'>A Recent Talk</h2>
 		</div>
@@ -67,7 +67,7 @@ const recentPublications = publications.slice(0, 5)
 	</section>
 
 	<!-- Recent Publications -->
-	<section class='py-12'>
+	<section class='py-10'>
 		<ArticleList listTitle='Recent Publications' listItems={recentPublications} />
 	</section>
 </Layout>
