@@ -10,16 +10,11 @@ interface Props {
 const {gridTitle, gridItems} = Astro.props;
 ---
 <h2 class="text-3xl font-bold mb-8">{gridTitle}</h2>
-<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
   {gridItems.map((item) => (
-    <div class="group relative overflow-hidden rounded-2xl border border-base-300/70 bg-base-200/70 p-6 text-base-content transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.2)]">
-      <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/70 via-primary/40 to-transparent"></div>
-      <div class="mb-3 flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.25em] text-base-content/60">
-        <span class="h-2 w-2 rounded-full bg-primary/70"></span>
-        <span>focus</span>
-      </div>
-      <h3 class="mb-3 text-xl font-semibold">{item.title}</h3>
-      <p class="leading-relaxed text-base-content/75">{item.description}</p>
+    <div class="p-6 rounded-lg text-base-content bg-base-200">
+      <h3 class="text-xl font-semibold mb-3">{item.title}</h3>
+      <p>{item.description}</p>
     </div>
   ))}
 </div>
