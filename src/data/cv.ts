@@ -136,7 +136,7 @@ export const publications = [
 		abstract: '',
 	},
 	{
-		title: 'The Body That Will Not Stay Dead: Resurrection, Routine, and Subtle Horror in Hades (forthcoming)',
+		title: 'The HP Body: On the Hull-Life of the Quantified Combatant (forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Sublte Body Horror: An Anthology About Having a Body (North Meridian Press)',
 		time: '2027',
