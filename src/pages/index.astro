@@ -7,6 +7,7 @@ import ProfilePictures from '@/assets/victoria2025.jpg'
 import Hero from '@/components/ui/Hero.astro'
 import Grid from '@/components/ui/Grid.astro'
 import ArticleList from '@/components/ui/ArticleList.astro'
+import PresentationWindow from '@/components/ui/PresentationWindow.astro'
 
 const { fullName, title, institute, research_areas } = profile
 
@@ -28,6 +29,16 @@ const { fullName, title, institute, research_areas } = profile
 	<!-- Research Areas -->
 	<section class='py-12 border-b'>
 		<Grid gridTitle='Research Areas' gridItems={research_areas} />
+	</section>
+
+	<!-- Presentation Preview -->
+	<section class='py-12 border-b'>
+		<PresentationWindow
+			title='Old Enough to Be Scared'
+			description='A short presentation on age representation in high-exposure horror games.'
+			src='/old-enough-to-be-scared.html'
+			linkText='Open presentation'
+		/>
 	</section>
 
 	<!-- Recent Publications -->
