@@ -162,7 +162,7 @@ export const publications = [
 	{
 		title: 'Tragbare Sterblichkeit: Techwear, Verfall und Persistenz in Death Stranding (forthcoming)',
 		authors: 'Victoria Mummelthei',
-		journal: 'Kostüm und Kostümierung: von theatralen, sozialen und technologischen Dimensionen des Rollentauschs (edited by Loredana Mingione, Selina Seibel)',
+		journal: 'Kostüm und Kostümierung: von theatralen, sozialen und technologischen Dimensionen des Rollentauschs (Metzler)',
 		time: '2026',
 		link: '',
 		abstract: 'After a long session of Death Stranding, the body carries a strange residue: shoulders tense, as if the weight on Sam’s back had briefly become my own. The game’s wearable technologies promise enhancement, yet constantly display their own decay—boots wear down, batteries drain, equipment ages in the rain. This essay follows that visibility of breakdown and asks what it means to live with technologies that do not hide our fragility but move with it.',
@@ -182,6 +182,14 @@ export const publications = [
 		time: '2027',
 		link: '',
 		abstract: '',
+	},
+		{
+		title: 'Manual Save Required: The Performance of Preserving Digital Games (forthcoming)',
+		authors: 'Victoria Mummelthei',
+		journal: 'Game Canon and Game History (Springer VS Cham)',
+		time: '2026',
+		link: '',
+		abstract: 'In The Rings of Power, dwarves describe mining as “stone-singing”: listening to the mountain so that it yields its ore willingly. The phrase turns extraction into something that sounds almost like care. This essay lingers with that strange promise and asks what it reveals about the stories we tell in order to live with the taking of the earth.',
 	},
 	{
 		title: 'On Stone-Singing and the Fantasy of Gentle Extraction in The Rings of Power (forthcoming)',
