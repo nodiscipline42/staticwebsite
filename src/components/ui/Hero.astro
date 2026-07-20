@@ -7,17 +7,14 @@ import SocialIcons from './SocialIcons.astro'
 const {fullName, title, institute, profilePicture} = Astro.props
 ---
 <div class='flex-1'>
-  <p class='mb-4 inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-medium text-primary'>
-    Research • media • atmosphere
-  </p>
-  <h1 class='mb-4 text-4xl font-semibold tracking-tight sm:text-5xl'>
-    Hi — I’m <span class='text-secondary'>{fullName}</span>
+  <h1 class='mb-4 text-4xl font-bold'>
+    Welcome! I'm <span class='text-secondary'>{fullName}</span>
   </h1>
-  <p class='mb-4 text-lg leading-8 text-base-content/80'>{title}{institute ? ` at ${institute}` : ''}</p>
-  <p class='mb-6 max-w-2xl text-base leading-8 text-base-content/70'>
-    I’m interested in how stories travel across games, film, photography, and environmental thought — especially around water, atmosphere, and the moods that shape what we notice.
+  <p class='mb-4 text-xl text-base-content/70'>{title}{institute ? ` at ${institute}` : ''}</p>
+  <p class='mb-6 text-lg leading-8 text-base-content/70'>
+    I'm drawn to stories that move across media and to environments that feel more than just background. My research often begins with games, tracing patterns across large samples and datasets, but it also reaches into film, photography, and environmental thought — especially around water, submerged worlds, visual atmosphere, and the blue in everything.
   </p>
-  <div class='flex flex-wrap items-center gap-4'>
+  <div class='flex gap-4'>
     <SocialIcons />
   </div>
 </div>
@@ -25,6 +22,6 @@ const {fullName, title, institute, profilePicture} = Astro.props
   <Image
     src={profilePicture}
     alt={fullName}
-    class='h-full w-full rounded-[2rem] border border-base-300/70 object-cover shadow-sm'
+    class='h-full w-full rounded-full border border-base-300 object-cover shadow-sm'
   />
 </div>
