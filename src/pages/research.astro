@@ -9,10 +9,16 @@ const { research_areas } = profile;
 ---
 
 <Layout title="Projects | Dr.phil. Victoria Mummelthei">
-  <div class="prose max-w-none">
-    <h1 class="text-3xl font-bold mb-8">Projects</h1>
+  <div class="space-y-12">
+    <section class="overflow-hidden rounded-[2rem] border border-primary/10 bg-gradient-to-br from-base-100 via-base-100 to-primary/10 p-8 shadow-[0_24px_60px_-40px_rgba(8,47,73,0.35)] sm:p-10">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary/70">Research currents</p>
+      <h1 class="mb-5 max-w-3xl text-4xl font-bold tracking-tight text-base-content sm:text-5xl">Projects</h1>
+      <p class="max-w-3xl text-lg leading-8 text-base-content/75">
+        My work stays close to water, atmosphere, media, and data: often empirical in method, but attentive to texture, mood, and the environments stories make visible.
+      </p>
+    </section>
 
-    <div class="mb-12">
+    <section class="rounded-[2rem] border border-base-300/70 bg-base-100/80 p-8 shadow-[0_18px_45px_-38px_rgba(8,47,73,0.28)] sm:p-10">
       <List listItems={[
         {
           title: "An Environmental Typology of the Sea in Digital Games",
@@ -23,35 +29,44 @@ const { research_areas } = profile;
           description: "This project asks a simple question: where are the old people in horror games? Borrowing the 'virtual census' method from Williams (2009) and Jones et al. (2025), it codes age, gender, and race across human characters in 79 high-exposure horror titles on Steam (each with over a million owners) and compares the results against real population data. The findings show adults dominate at 78.8% of characters, while elderly characters sit at just 1.2% — and only one, Wickerbottom from Don't Starve Together, is playable. The study argues this gap isn't accidental but structural, shaped by subgenre mechanics and content ratings that quietly encode assumptions about which bodies get to survive horror."
         }
       ]} />
-    </div>
+    </section>
 
-    <h2 class="text-2xl font-bold mb-6">Research Areas</h2>
-    <div class="grid gap-8 mb-12">
+    <section class="rounded-[2rem] border border-base-300/70 bg-base-100/80 p-8 shadow-[0_18px_45px_-38px_rgba(8,47,73,0.28)] sm:p-10">
+    <div class="mb-8 flex items-end justify-between gap-4">
+      <div>
+        <p class="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary/70">Themes</p>
+        <h2 class="text-3xl font-bold tracking-tight">Research Areas</h2>
+      </div>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 mb-2">
       {
         research_areas.map((area) => (
-          <div class="flex gap-6 items-start">
-            <BetterIcon>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke-width="2"
-                class="size-6 stroke-accent"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d={RESEARCH_ICONS[area.field as keyof typeof RESEARCH_ICONS]?.path || RESEARCH_ICONS['computer-science'].path}
-                />
-              </svg>
-            </BetterIcon>
-            <div>
-              <h3 class="text-xl font-semibold mb-2">{area.title}</h3>
-              <p class="text-base">{area.description}</p>
+          <div class="rounded-[1.5rem] border border-primary/10 bg-gradient-to-br from-base-100 via-base-100 to-secondary/10 p-6 shadow-[0_16px_38px_-34px_rgba(8,47,73,0.32)]">
+            <div class="mb-4 flex items-center gap-4">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full border border-primary/15 bg-primary/10 text-primary">
+                <BetterIcon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                    class="size-6 stroke-current"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d={RESEARCH_ICONS[area.field as keyof typeof RESEARCH_ICONS]?.path || RESEARCH_ICONS['computer-science'].path}
+                    />
+                  </svg>
+                </BetterIcon>
+              </div>
+              <h3 class="text-xl font-semibold capitalize">{area.title}</h3>
             </div>
+            <p class="text-base leading-7 text-base-content/75">{area.description}</p>
           </div>
         ))
       }
     </div>
+    </section>
   </div>
 </Layout>

@@ -12,9 +12,10 @@ const { listTitle, listItems } = Astro.props
 <div class="grid gap-6 mb-12">
   {
     listItems.map((item) => (
-      <div class="p-6 bg-base-200 rounded-xl text-base-content">
-        <h3 class="text-xl font-semibold mb-3">{item.title}</h3>
-        <p>{item.description}</p>
+      <div class="rounded-[1.75rem] border border-primary/10 bg-gradient-to-br from-base-100 via-base-100 to-primary/5 p-7 text-base-content shadow-[0_18px_45px_-30px_rgba(8,47,73,0.35)] transition hover:border-primary/20 hover:shadow-[0_22px_55px_-32px_rgba(8,47,73,0.4)]">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary/70">Current project</p>
+        <h3 class="mb-4 text-xl font-semibold leading-snug">{item.title}</h3>
+        <p class="leading-7 text-base-content/75">{item.description}</p>
       </div>
     ))
   }
