@@ -11,43 +11,42 @@ const isBlogPopulated = await getCollection('blog').then(collection => collectio
 const {fullName, title} = profile
 ---
 <aside
-	class='h-screen w-[19.5rem] border-r border-primary/10 bg-gradient-to-b from-base-100 via-base-100 to-primary/10 px-4 pt-4 text-base-content'
+	class='px-4 pt-4 h-screen w-[20rem] bg-base-200 text-base-content flex flex-col'
 >
-	<div class='my-6 flex h-full flex-col justify-between'>
+	<div class='flex flex-col my-8 justify-between h-full'>
 		<div>
-			<div class='flex flex-col items-center justify-center'>
+			<div class='flex justify-center items-center flex-col'>
 				<Image
-					class='mask mask-circle size-36 border border-primary/15'
+					class='mask mask-circle size-44'
 					src={ProfilePictures}
 					alt={`Profile picture of ${fullName}`}
 				/>
-				<h1 class="mt-6 text-lg font-semibold tracking-tight"> {fullName}
+				<h1 class="text-lg font-black mt-8 hidden lg:block"> {fullName}
 				</h1>
-				<p class='mt-1 text-center text-sm text-base-content/70'>{title}</p>
 			</div>
-			<div class='mx-3 mt-10'>
-				<ul class='menu menu-md grow shrink space-y-2 overflow-y-auto rounded-2xl border border-primary/10 bg-base-100/80 p-3 shadow-sm'>
+			<div class='mx-4 mt-16'>
+				<ul class='space-y-4 menu grow shrink menu-md overflow-y-auto'>
 					<li>
-	                        <a href={`${template.base}/`} class='text-base font-medium'>Home</a>
+	                        <a href={`${template.base}/`} class='text-lg'>Home</a>
 					</li>
 					<li>
-	                        <a href={`${template.base}/research`} class='text-base font-medium'>Projects</a>
+	                        <a href={`${template.base}/research`} class='text-lg'>Projects</a>
 					</li>
 					<li>
-	                        <a href={`${template.base}/papers`} class='text-base font-medium'>Papers</a>
+	                        <a href={`${template.base}/papers`} class='text-lg'>Papers</a>
 					</li>
 					<li>
-						<a href={`${template.base}/talks`} class='text-base font-medium'>Talks</a>
+						<a href={`${template.base}/talks`} class='text-lg'>Talks</a>
 					</li>
 					<li>
-						<a href={`${template.base}/courses`} class='text-base font-medium'>Courses</a>
+						<a href={`${template.base}/courses`} class='text-lg'>Courses</a>
 					</li>
 					<li>
-	                        <a href={`${template.base}/cv`} class='text-base font-medium'>CV</a>
+	                        <a href={`${template.base}/cv`} class='text-lg'>CV</a>
                     </li>
                     {isBlogPopulated &&
 					<li>
-	<a href="https://nodiscipline.hypotheses.org/" target="_blank" class='text-base font-medium'>
+	<a href="https://nodiscipline.hypotheses.org/" target="_blank" class='text-lg'>
 		Blog
 	</a>
 </li>
@@ -55,7 +54,7 @@ const {fullName, title} = profile
 				</ul>
 			</div>
 		</div>
-		<div class='mx-4 pb-3'>
+		<div class='mx-4'>
 			<SocialIcons/>
 		</div>
 	</div>
