@@ -363,6 +363,30 @@ export const talks = [
 	},
 ];
 export const courses = [
+		{
+		title: 'Data Empire: How Information Built and Broke Civilizations',
+		journal: 'winter 2026',
+		abstract: '',
+		link: 'https://nodiscipline.hypotheses.org/when-and-what-5',
+	},
+			{
+		title: 'Reading Happiness in the Middle East',
+		journal: 'winter 2026',
+		abstract: '',
+		link: 'https://nodiscipline.hypotheses.org/when-and-what-6',
+	},
+			{
+		title: 'writing the middle east: reader-focussed texts',
+		journal: 'winter 2026',
+		abstract: '',
+		link: 'https://nodiscipline.hypotheses.org/when-and-what-3',
+	},
+	{
+		title: 'studying the middle east: reading recent ISME faculty publications',
+		journal: 'winter 2026',
+		abstract: '',
+		link: 'https://nodiscipline.hypotheses.org/when-and-what-4',
+	},
 	{
 		title: 'Bodies Before Doctrine: Reading Religion Through the Senses',
 		journal: 'summer 2026',
