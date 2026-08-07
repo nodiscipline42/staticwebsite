@@ -127,6 +127,14 @@ description: "German and English for writing and teaching; some Arabic and Kurdi
 ];
 
 export const publications = [
+		{
+		title: 'retrofuturism/speculative futurism in games (planned)',
+		authors: 'Victoria Mummelthei',
+		journal: 'Oxford Handbook of Historical Game Studies (still needs to be approved by Oxford University Press',
+		time: '2028',
+		link: '',
+		abstract: 'some kind of retrofuturism/speculative futurism – and what ‘retrofuturism’ might mean for our conceptions of history, being in time, etc',
+	},
 	{
 		title: 'The HP Body: On the Hull-Life of the Quantified Combatant (forthcoming)',
 		authors: 'Victoria Mummelthei',
