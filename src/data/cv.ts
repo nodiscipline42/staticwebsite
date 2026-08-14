@@ -127,16 +127,24 @@ description: "German and English for writing and teaching; some Arabic and Kurdi
 ];
 
 export const publications = [
+	{
+		title: 'Speculation, by the Tag: A Virtual Census of Political Futures, Alternate Histories, and Catastrophic Worlds in Commercial Games, 2015-2025 (submitted)',
+		authors: 'Victoria Mummelthei',
+		journal: 'Faster than society gathers wisdom: Video games and/as speculative Fiction (McFarland, Studies in Gaming Series); editor: Marc A. Ouellette, Old Dominion University',
+		time: '2028',
+		link: '',
+		abstract: '',
+	},
 		{
 		title: 'retrofuturism/speculative futurism in games (planned)',
 		authors: 'Victoria Mummelthei',
-		journal: 'Oxford Handbook of Historical Game Studies (still needs to be approved by Oxford University Press',
+		journal: 'Oxford Handbook of Historical Game Studies (still needs to be approved by Oxford University Press)',
 		time: '2028',
 		link: '',
 		abstract: 'some kind of retrofuturism/speculative futurism – and what ‘retrofuturism’ might mean for our conceptions of history, being in time, etc',
 	},
 	{
-		title: 'The HP Body: On the Hull-Life of the Quantified Combatant (forthcoming)',
+		title: 'The HP Body: On the Hull-Life of the Quantified Combatant (accepted by the editors, forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Sublte Body Horror: An Anthology About Having a Body (North Meridian Press)',
 		time: '2027',
@@ -144,7 +152,7 @@ export const publications = [
 		abstract: 'After a few hundred deaths in Hades, dying stops feeling strange. Zagreus dissolves and reforms so often that the player gradually stops noticing the body that keeps failing. This essay lingers with that quiet shift and asks what kind of embodiment remains when death becomes routine.',
 	},
 		{
-		title: 'On the Game Ocean and Its Time (forthcoming)',
+		title: 'On the Game Ocean and Its Time (accepted by the editors,forthcoming)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Advancing an Understanding of Temporality in Play and Games (edited among others by Emma Kostopolus)',
 		time: '2026',
@@ -192,11 +200,11 @@ export const publications = [
 		abstract: '',
 	},
 		{
-		title: 'Manual Save Required: The Performance of Preserving Digital Games (forthcoming)',
+		title: 'Manual Save Required: The Performance of Preserving Digital Games (in print)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Game Canon and Game History (Springer VS Cham)',
 		time: '2026',
-		link: '',
+		link: 'https://link.springer.com/book/9783032252173',
 		abstract: 'In The Rings of Power, dwarves describe mining as “stone-singing”: listening to the mountain so that it yields its ore willingly. The phrase turns extraction into something that sounds almost like care. This essay lingers with that strange promise and asks what it reveals about the stories we tell in order to live with the taking of the earth.',
 	},
 	{
@@ -208,11 +216,11 @@ export const publications = [
 		abstract: 'In The Rings of Power, dwarves describe mining as “stone-singing”: listening to the mountain so that it yields its ore willingly. The phrase turns extraction into something that sounds almost like care. This essay lingers with that strange promise and asks what it reveals about the stories we tell in order to live with the taking of the earth.',
 	},
 	{
-		title: 'Zwischen Körper, Klang und Kraft: Der Thu’um als soma-akustische Resonanz in Skyrim (forthcoming)',
+		title: 'Zwischen Körper, Klang und Kraft: Der Thu’um als soma-akustische Resonanz in Skyrim',
 		authors: 'Victoria Mummelthei',
 		journal: '„I used to be an adventurer like you …“ Interdisziplinäre Perspektiven auf The Elder Scrolls',
 		time: '2026',
-		link: '',
+		link: 'https://www.vwh-verlag-shop.de/I-used-to-be-an-adventurer-like-you',
 		abstract: '',
 	},
 		{
@@ -265,6 +273,14 @@ export const publications = [
 	// },
 ];
 export const talks = [
+	{
+		title: 'What Counts as Oceanic Horror? An Exposure-Weighted Study of Contemporary Video Games (submitted)',
+		authors: 'Victoria Mummelthei',
+		journal: 'Oceanic Horror (2027 NeMLA Conference)y',
+		time: '2027',
+		link: 'https://www.cfplist.com/CFP/49187',
+		abstract: '',
+	},
 	{
 		title: 'When the Western Washes Ashore: Island Space and Western Form in Red Dead Redemption 2 (forthcoming)',
 		authors: 'Victoria Mummelthei',
