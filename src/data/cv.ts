@@ -128,7 +128,7 @@ description: "German and English for writing and teaching; some Arabic and Kurdi
 
 export const publications = [
 	{
-		title: 'Speculation, by the Tag: A Virtual Census of Political Futures, Alternate Histories, and Catastrophic Worlds in Commercial Games, 2015-2025 (submitted)',
+		title: 'Speculation, by the Tag: A Virtual Census of Political Futures, Alternate Histories, and Catastrophic Worlds in Commercial Games, 2015-2025 (proposal submitted)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Faster than society gathers wisdom: Video games and/as speculative Fiction (McFarland, Studies in Gaming Series); editor: Marc A. Ouellette, Old Dominion University',
 		time: '2028',
@@ -274,7 +274,7 @@ export const publications = [
 ];
 export const talks = [
 	{
-		title: 'What Counts as Oceanic Horror? An Exposure-Weighted Study of Contemporary Video Games (submitted)',
+		title: 'What Counts as Oceanic Horror? An Exposure-Weighted Study of Contemporary Video Games (proposal submitted)',
 		authors: 'Victoria Mummelthei',
 		journal: 'Oceanic Horror (2027 NeMLA Conference)y',
 		time: '2027',
