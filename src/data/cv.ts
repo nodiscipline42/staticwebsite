@@ -286,7 +286,7 @@ export const talks = [
 		authors: 'Victoria Mummelthei',
 		journal: 'II Colloquium on Island Literatures and Cultures, Azores University',
 		time: '2026',
-		link: '',
+		link: 'https://www.cfplist.com/CFP/47353',
 		abstract: '',
 	},
 	{
