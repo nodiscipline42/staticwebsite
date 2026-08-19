@@ -298,7 +298,7 @@ export const talks = [
 		abstract: '',
 	},
 	{
-		title: 'Old Enough to Be Scared: Age Representation in High-Exposure Horror Games (forthcoming)',
+		title: 'Old Enough to Be Scared: Age Representation in High-Exposure Horror Games',
 		authors: 'Victoria Mummelthei',
 		journal: 'Falmouth Horror & Gaming Conference',
 		time: '2026',
