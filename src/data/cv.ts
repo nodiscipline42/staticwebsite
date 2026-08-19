@@ -276,9 +276,17 @@ export const talks = [
 	{
 		title: 'What Counts as Oceanic Horror? An Exposure-Weighted Study of Contemporary Video Games (proposal submitted)',
 		authors: 'Victoria Mummelthei',
-		journal: 'Oceanic Horror (2027 NeMLA Conference)y',
+		journal: 'Oceanic Horror (2027 NeMLA Conference)',
 		time: '2027',
 		link: 'https://www.cfplist.com/CFP/49187',
+		abstract: '',
+	},
+	{
+		title: 'Procedural Ecologies of Wetland Biomes in Video Games (proposal submitted)',
+		authors: 'Victoria Mummelthei',
+		journal: 'WETLANDS symposium, University of Lille, France'
+		time: '2026',
+		link: 'https://call-for-papers.sas.upenn.edu/cfp/2026/06/09/%E2%80%9Cwetlands%E2%80%9D-representing-and-historicizing-wetland-environments',
 		abstract: '',
 	},
 	{
