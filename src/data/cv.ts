@@ -284,7 +284,7 @@ export const talks = [
 	{
 		title: 'Procedural Ecologies of Wetland Biomes in Video Games (proposal submitted)',
 		authors: 'Victoria Mummelthei',
-		journal: 'WETLANDS symposium, University of Lille, France'
+		journal: 'WETLANDS symposium, University of Lille, France',
 		time: '2026',
 		link: 'https://call-for-papers.sas.upenn.edu/cfp/2026/06/09/%E2%80%9Cwetlands%E2%80%9D-representing-and-historicizing-wetland-environments',
 		abstract: '',
