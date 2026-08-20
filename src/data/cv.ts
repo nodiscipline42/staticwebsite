@@ -2,9 +2,9 @@ export const experiences = [
 	{
 		company: 'Interdisciplinary Studies of the Middle East (ISME), Department of History and Cultural Studies, Freie Universität Berlin',
 		time: '2022 - today',
-		title: 'Scientific Coordinator',
+		title: 'Programme Lead & Scientific Coordinator',
 		location: 'Berlin',
-		description: '',
+		description: 'English-taught master\'s programme aimed at students from all over the world, with a focus on interdisciplinary research and teaching. I coordinate the programme, supervise theses, and teach courses that go beyond Middle East studies',
 	},
 	{
 		company: 'Arabic Studies, Department of History and Cultural Studies, Freie Universität Berlin',
