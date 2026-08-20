@@ -6,18 +6,13 @@ export const profile = {
 	research_areas: [
   {
     title: 'environmental imagination',
-    description: 'How games, film, and literature imagine oceans, flooding worlds, underwater environments, ruins, and ecosystems – and how bodies, non-human life, and strange ecologies blur into these landscapes.',
+    description: 'How media – especially games – imagine oceans, flooding worlds, underwater environments, ruins, and ecosystems – and how bodies, non-human life, and strange ecologies blur into these landscapes.',
     field: 'environment'
   },
   {
     title: 'games as data',
     description: 'Using large-scale game data – ownership, tags, genres, and coded samples – to trace patterns across thousands of titles rather than relying on a handful of case studies.',
     field: 'data'
-  },
-  {
-    title: 'stories across media',
-    description: 'How narratives and visual practices – photography, colour, atmosphere – travel between games, film, literature, and visual culture, and how meaning changes as they cross media.',
-    field: 'stories'
   }
 ],
 }
