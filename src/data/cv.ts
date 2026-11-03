@@ -8,7 +8,7 @@ export const experiences = [
 	},
 	{
 		company: 'Arabic Studies, Department of History and Cultural Studies, Freie Universität Berlin',
-		time: '2021 - 2027',
+		time: '2021 - today',
 		title: 'Postdoc',
 		location: 'Berlin',
 		description: '',
