@@ -168,11 +168,11 @@ export const publications = [
 		abstract: 'Cyberpunk worlds promise futures where humanity has moved beyond itself. Yet their artificial gods, digital afterlives, and machine philosophies keep circling back to much older stories about transcendence and meaning. This essay follows that pattern and asks why even our most post-human futures still seem unable to imagine life without myth.',
 	},
 	{
-		title: 'Hypersea Horror: Offshore Extractivism, Wet Ontology, and Lovecraftian Echoes in Still Wakes the Deep (forthcoming)',
+		title: 'Hypersea Horror: Offshore Extractivism, Wet Ontology, and Lovecraftian Echoes in Still Wakes the Deep',
 		authors: 'Victoria Mummelthei',
-		journal: 'Lovecraft: An Evolving Mythos. A Companion (Peter Lang)',
+		journal: 'Lovecraft in the New Millennium. A Companion (Peter Lang)',
 		time: '2026',
-		link: '',
+		link: 'https://www.peterlang.com/document/1585632#',
 		abstract: 'Still Wakes the Deep places cosmic horror on an offshore oil platform, where rusting infrastructure and ancient forces begin to blur together. The rig becomes a strange threshold: neither land nor sea, neither stable industry nor pure abyss. This essay follows that uneasy setting and asks what happens when Lovecraftian dread collides with the material realities of extractivism and oceanic environments.',
 	},
 	{
