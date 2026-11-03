@@ -21,14 +21,14 @@ export const profile = {
 export const social = {
 	email: 'victoria.mummelthei@fu-berlin.de',
 	linkedin: '',
-	x: 'https://nodiscipline42.substack.com/',
+	x: 'https://nodiscipline.hypotheses.org/',
 	bluesky: '',
 	github: '',
 	gitlab: '',
 	scholar: '',
 	inspire: '',
 	arxiv: 'https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Mummelthei%2C%20Victoria%22&l=list&p=1&s=10&sort=bestmatch',
-	orcid: '',
+	orcid: 'https://orcid.org/my-orcid?orcid=0000-0003-4483-4026',
 }
 
 export const template = {
