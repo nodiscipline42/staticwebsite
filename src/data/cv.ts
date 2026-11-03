@@ -274,7 +274,7 @@ export const publications = [
 ];
 export const talks = [
 	{
-		title: 'What Counts as Oceanic Horror? An Exposure-Weighted Study of Contemporary Video Games (proposal submitted)',
+		title: 'What Counts as Oceanic Horror? An Exposure-Weighted Study of Contemporary Video Games',
 		authors: 'Victoria Mummelthei',
 		journal: 'Oceanic Horror (2027 NeMLA Conference)',
 		time: '2027',
@@ -290,7 +290,7 @@ export const talks = [
 		abstract: '',
 	},
 	{
-		title: 'When the Western Washes Ashore: Island Space and Western Form in Red Dead Redemption 2 (forthcoming)',
+		title: 'When the Western Washes Ashore: Island Space and Western Form in Red Dead Redemption 2',
 		authors: 'Victoria Mummelthei',
 		journal: 'II Colloquium on Island Literatures and Cultures, Azores University',
 		time: '2026',
